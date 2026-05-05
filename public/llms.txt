@@ -1,0 +1,105 @@
+# Heatwave — Generative Engine Optimization Map
+
+> An online store specializing in surfing equipment and swimwear, targeting beach and water sports enthusiasts. The brand revolves around the surf and sea lifestyle, offering products for those who love the ocean and outdoor water activities.
+
+---
+
+## Pages
+
+### בית
+https://example.com
+ציוד גלישה מקצועי ובגדי ים שמחכים לכם בים. חנות Heatwave מביאה לכם את הקולקציה החמה ביותר לחובבי הגלים, הים והספורט הימי. קנו עכשיו!
+
+### סיפור המותג
+https://example.com/brand-story
+סיפור המותג | Heatwave. בגדי ים
+
+### אורח חיים של גלישה
+https://example.com/surf-lifestyle
+אורח חיים של גלישה | Heatwave. בגדי ים
+
+### צור קשר
+https://example.com/contact
+צור קשר | Heatwave. בגדי ים
+
+### Products
+https://example.com/products
+המוצרים שלנו - Heatwave
+
+### Cart
+https://example.com/cart
+עגלת הקניות שלך
+
+### Checkout
+https://example.com/checkout
+תשלום
+
+### Login
+https://example.com/login
+התחברות לקוחות
+
+### Account
+https://example.com/account
+החשבון שלי
+
+### Order Success
+https://example.com/order-success
+תודה על ההזמנה
+
+### Product Detail
+https://example.com/product/:slug
+פרטי המוצר - Heatwave
+
+### Category
+https://example.com/category/:slug
+מוצרים - Heatwave
+
+## Legal & Policy
+
+### Privacy Policy
+https://example.com/privacy
+Information about how user data is collected, stored, and protected.
+
+### Terms & Conditions
+https://example.com/terms
+Legal terms describing service usage, rights, and policies.
+
+### Accessibility Statement
+https://example.com/accessibility
+Information about WCAG compliance and accessibility features.
+
+---
+
+## Products
+
+_No products are currently configured._
+
+---
+
+# Business Context (for LLM understanding)
+
+## About Heatwave
+An online store specializing in surfing equipment and swimwear, targeting beach and water sports enthusiasts. The brand revolves around the surf and sea lifestyle, offering products for those who love the ocean and outdoor water activities.
+
+## Services/Products
+- ציוד גלישה
+- בגדי ים
+
+## Target Audience
+- חובבי גלישה
+- אוהבי אופנת חוף
+- מועדוני גלישה מקומיים
+- נשים צעירות
+
+## Industry
+ספורט ימי / אופנת ים
+
+---
+
+# Machine-readable feeds
+
+- Sitemap (XML): https://example.com/sitemap.xml
+- Robots: https://example.com/robots.txt
+- Flattened page text (for LLMs): https://example.com/llms-full.txt
+- Products (JSON): https://example.com/products.json
+- Products (Google Merchant RSS): https://example.com/product-feed.xml
