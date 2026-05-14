@@ -2,15 +2,15 @@
 <rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
   <channel>
     <title>Heatwave</title>
-    <link>https://example.com</link>
+    <link>https://heatwave-1.zappy5.app</link>
     <description>Product feed for Heatwave</description>
-    <lastBuildDate>Thu, 14 May 2026 15:16:44 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 14 May 2026 15:19:37 GMT</lastBuildDate>
     <item>
       <g:id>ddc70118-05cf-4112-a822-af4a585ee4b7</g:id>
       <g:title>גלשן של מיכאל בעבודת יד</g:title>
       <g:description>גלשן של מיכאל בעבודת יד</g:description>
-      <g:link>https://example.com/product/glshn-shl-mykal-babvdt-yd-es8ye8</g:link>
-      <g:image_link>https://example.com/assets/image-product-image-1778671634097-o0k62m.webp</g:image_link>
+      <g:link>https://heatwave-1.zappy5.app/product/glshn-shl-mykal-babvdt-yd-es8ye8</g:link>
+      <g:image_link>https://heatwave-1.zappy5.app/assets/image-product-image-1778671634097-o0k62m.webp</g:image_link>
       <g:availability>in_stock</g:availability>
       <g:price>999.00 ILS</g:price>
       <g:sale_price>999.00 ILS</g:sale_price>

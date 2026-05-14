@@ -7,65 +7,65 @@
 ## Pages
 
 ### בית
-https://example.com
+https://heatwave-1.zappy5.app
 ציוד גלישה מקצועי ובגדי ים שמחכים לכם בים. חנות Heatwave מביאה לכם את הקולקציה החמה ביותר לחובבי הגלים, הים והספורט הימי. קנו עכשיו!
 
 ### סיפור המותג
-https://example.com/brand-story
+https://heatwave-1.zappy5.app/brand-story
 סיפור המותג | Heatwave. בגדי ים
 
 ### אורח חיים של גלישה
-https://example.com/surf-lifestyle
+https://heatwave-1.zappy5.app/surf-lifestyle
 אורח חיים של גלישה | Heatwave. בגדי ים
 
 ### צור קשר
-https://example.com/contact
+https://heatwave-1.zappy5.app/contact
 צור קשר | Heatwave. בגדי ים
 
 ### Products
-https://example.com/products
+https://heatwave-1.zappy5.app/products
 המוצרים שלנו - Heatwave
 
 ### Cart
-https://example.com/cart
+https://heatwave-1.zappy5.app/cart
 עגלת הקניות שלך
 
 ### Checkout
-https://example.com/checkout
+https://heatwave-1.zappy5.app/checkout
 תשלום
 
 ### Login
-https://example.com/login
+https://heatwave-1.zappy5.app/login
 התחברות לקוחות
 
 ### Account
-https://example.com/account
+https://heatwave-1.zappy5.app/account
 החשבון שלי
 
 ### Order Success
-https://example.com/order-success
+https://heatwave-1.zappy5.app/order-success
 תודה על ההזמנה
 
 ### Product Detail
-https://example.com/product/:slug
+https://heatwave-1.zappy5.app/product/:slug
 פרטי המוצר - Heatwave
 
 ### Category
-https://example.com/category/:slug
+https://heatwave-1.zappy5.app/category/:slug
 מוצרים - Heatwave
 
 ## Legal & Policy
 
 ### Privacy Policy
-https://example.com/privacy
+https://heatwave-1.zappy5.app/privacy
 Information about how user data is collected, stored, and protected.
 
 ### Terms & Conditions
-https://example.com/terms
+https://heatwave-1.zappy5.app/terms
 Legal terms describing service usage, rights, and policies.
 
 ### Accessibility Statement
-https://example.com/accessibility
+https://heatwave-1.zappy5.app/accessibility
 Information about WCAG compliance and accessibility features.
 
 ---
@@ -75,10 +75,10 @@ Information about WCAG compliance and accessibility features.
 **Total active products: 1**
 
 ### גלשן של מיכאל בעבודת יד
-https://example.com/product/glshn-shl-mykal-babvdt-yd-es8ye8
+https://heatwave-1.zappy5.app/product/glshn-shl-mykal-babvdt-yd-es8ye8
 - Price: 999.00 ILS (sale, was 1500.00 ILS)
 - Availability: In stock
-- Image: https://example.com/assets/image-product-image-1778671634097-o0k62m.webp
+- Image: https://heatwave-1.zappy5.app/assets/image-product-image-1778671634097-o0k62m.webp
 
 ---
 
@@ -104,8 +104,8 @@ An online store specializing in surfing equipment and swimwear, targeting beach 
 
 # Machine-readable feeds
 
-- Sitemap (XML): https://example.com/sitemap.xml
-- Robots: https://example.com/robots.txt
-- Flattened page text (for LLMs): https://example.com/llms-full.txt
-- Products (JSON): https://example.com/products.json
-- Products (Google Merchant RSS): https://example.com/product-feed.xml
+- Sitemap (XML): https://heatwave-1.zappy5.app/sitemap.xml
+- Robots: https://heatwave-1.zappy5.app/robots.txt
+- Flattened page text (for LLMs): https://heatwave-1.zappy5.app/llms-full.txt
+- Products (JSON): https://heatwave-1.zappy5.app/products.json
+- Products (Google Merchant RSS): https://heatwave-1.zappy5.app/product-feed.xml

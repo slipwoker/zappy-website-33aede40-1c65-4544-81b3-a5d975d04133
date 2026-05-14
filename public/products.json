@@ -1,7 +1,7 @@
 {
   "@context": "https://schema.org",
-  "generated_at": "2026-05-14T15:16:44.390Z",
-  "base_url": "https://example.com",
+  "generated_at": "2026-05-14T15:19:37.704Z",
+  "base_url": "https://heatwave-1.zappy5.app",
   "currency": "ILS",
   "count": 1,
   "products": [
@@ -22,11 +22,11 @@
       "sale_price": 999,
       "currency": "ILS",
       "images": [
-        "https://example.com/assets/image-product-image-1778671634097-o0k62m.webp"
+        "https://heatwave-1.zappy5.app/assets/image-product-image-1778671634097-o0k62m.webp"
       ],
       "in_stock": true,
       "stock_status": "in_stock",
-      "url": "https://example.com/product/glshn-shl-mykal-babvdt-yd-es8ye8",
+      "url": "https://heatwave-1.zappy5.app/product/glshn-shl-mykal-babvdt-yd-es8ye8",
       "categories": [],
       "updated_at": "2026-05-14T15:09:41.973Z"
     }
