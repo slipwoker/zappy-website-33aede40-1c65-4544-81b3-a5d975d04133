@@ -4,6 +4,19 @@
     <title>Heatwave</title>
     <link>https://example.com</link>
     <description>Product feed for Heatwave</description>
-    <lastBuildDate>Tue, 05 May 2026 14:06:43 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 14 May 2026 15:12:28 GMT</lastBuildDate>
+    <item>
+      <g:id>ddc70118-05cf-4112-a822-af4a585ee4b7</g:id>
+      <g:title>גלשן של מיכאל בעבודת יד</g:title>
+      <g:description>גלשן של מיכאל בעבודת יד</g:description>
+      <g:link>https://example.com/product/glshn-shl-mykal-babvdt-yd-es8ye8</g:link>
+      <g:image_link>https://example.com/assets/image-product-image-1778671634097-o0k62m.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>999.00 ILS</g:price>
+      <g:sale_price>999.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Heatwave</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
   </channel>
 </rss>
