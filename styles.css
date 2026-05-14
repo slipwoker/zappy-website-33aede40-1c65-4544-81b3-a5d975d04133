@@ -2542,17 +2542,16 @@ html[dir="rtl"] .site-footer .footer-col:nth-child(3) .footer-contact li{flex-di
   box-sizing: border-box;
 }
 
-/* ── Frosted Card ── */
 .index-hero-section .index-hero-card {
-  background: rgba(242, 233, 220, 0.13);
-  backdrop-filter: blur(18px) saturate(1.2);
+  background: transparent;
+  backdrop-filter: none;
   -webkit-backdrop-filter: blur(18px) saturate(1.2);
-  border: 1px solid rgba(242, 233, 220, 0.22);
+  border: none;
   border-radius: 20px;
   padding: 40px 36px 36px;
   max-width: 440px;
   width: 100%;
-  box-shadow: 0 16px 48px rgba(44,36,32,0.28);
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   gap: 0;
