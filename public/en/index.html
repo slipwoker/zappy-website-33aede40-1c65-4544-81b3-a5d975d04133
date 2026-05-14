@@ -1580,17 +1580,17 @@ html[dir="ltr"] .lang-switcher {
 </script>
   
   <main>
-    <section class="index-hero-section" data-layout-spec="בית-hero" dir="ltr" data-hero-type="fullscreen-scrim" id="index-hero-section" style="direction: ltr; min-height: 1164.44px !important;">
+    <section class="index-hero-section" data-layout-spec="בית-hero" dir="ltr" data-hero-type="fullscreen-scrim" id="index-hero-section" style="direction: ltr; min-height: 1164.44px !important; background-image: none; position: relative; overflow: hidden; --zappy-bg-overlay: rgba(43, 36, 28, 0);" data-zappy-bg-color="" data-zappy-bg-image="assets/site-index-hero-image-1.webp" data-zappy-bg-overlay-color="#2b241c" data-zappy-bg-overlay-opacity="0" data-zappy-bg-video-type="youtube" data-zappy-bg-video-url="https://www.youtube.com/watch?v=vYuoECsqZy8" data-zappy-bg-type="video"><div class="zappy-section-video-bg" style="position: absolute; inset: 0px; z-index: 0; overflow: hidden; pointer-events: none;"><div style="position: absolute; inset: 0px; z-index: 1; background: rgba(43, 36, 28, 0);"></div><iframe src="https://www.youtube.com/embed/vYuoECsqZy8?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=vYuoECsqZy8&amp;controls=0&amp;showinfo=0" class="zappy-section-video-iframe" frameborder="0" allow="autoplay; fullscreen" allowfullscreen="true" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></iframe></div>
   <!-- Background Image -->
-  <div class="index-hero-bg">
+  <div class="index-hero-bg" style="display: none;" data-zappy-original-bg="hidden">
     <img data-hero-bg="true" data-placeholder="index-hero-image-1" data-context="Golden-hour cinematic beach scene: surfers carrying colorful surfboards along a sunlit shoreline, warm amber and terracotta tones, a group of stylish young adults in vibrant swimwear walking by the water" s="" edge,="" sea="" foam="" lapping="" the="" sand,="" soft="" bokeh="" ocean="" background,="" life="" photography="" for="" a="" premium="" surf="" and="" swimwear="" brand,="" warm="" mediterranean="" light,="" golden="" reflections="" on="" wet="" sand'="" width="1400" height="900" src="/assets/site-index-hero-image-1.webp" alt="Surfers on the beach at golden hour with surf equipment and colorful swimwear" data-hero-background="true" data-element-type="image" data-element-id="img-1778771468514-8hats6er3">
   </div>
 
   <!-- Scrim Overlay -->
-  <div class="index-hero-scrim" aria-hidden="true"></div>
+  <div class="index-hero-scrim" aria-hidden="true" data-zappy-gradient-scrim="true" style="opacity: 1; display: none;" data-zappy-scrim-orig-opacity="1" data-zappy-original-bg="hidden"></div>
 
   <!-- Decorative Sun Rays -->
-  <div class="index-hero-sun-decoration" aria-hidden="true">
+  <div class="index-hero-sun-decoration" aria-hidden="true" style="z-index: 2;">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="56" height="56">
       <circle cx="40" cy="40" r="14" fill="var(--primary)" opacity="0.85"></circle>
       <g stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" opacity="0.7">
@@ -1607,7 +1607,7 @@ html[dir="ltr"] .lang-switcher {
   </div>
 
   <!-- Frosted Content Card -->
-  <div class="index-hero-content-wrapper">
+  <div class="index-hero-content-wrapper" style="z-index: 2;">
     <div class="index-hero-card">
       <!-- Brand label -->
       <p class="zappy-editable"><span class="index-hero-label" style="color: rgb(242, 233, 220) !important;">Water Sports &amp; Swimwear</span></p><h1 class="index-hero-h1">Heatwave —<br>The waves are calling you</h1>
@@ -1629,7 +1629,7 @@ html[dir="ltr"] .lang-switcher {
   </div>
 
   <!-- Bottom Sand-Dune Divider -->
-  <div class="index-hero-divider-wrapper">
+  <div class="index-hero-divider-wrapper" style="z-index: 2;">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1400 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,90 L0,60 Q175,30 350,52 Q525,72 700,45 Q875,20 1050,48 Q1225,72 1400,38 L1400,90 Z" fill="#F5F0E8"></path>
     </svg>
@@ -2034,6 +2034,8 @@ html[dir="ltr"] .lang-switcher {
   <script src="/script.js"></script>
 
     <div data-integration="accessibility:toolbar"></div>
+
+
 
 
 
