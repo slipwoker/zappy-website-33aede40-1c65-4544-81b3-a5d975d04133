@@ -223,7 +223,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="צור קשר — Heatwave">
     <meta name="twitter:description" content="צור קשר | Heatwave. בגדי ים">
-    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://heatwave-1.zappy5.app#organization","name":"Heatwave","url":"https://heatwave-1.zappy5.app","description":"An online store specializing in surfing equipment and swimwear, targeting beach and water sports enthusiasts. The brand revolves around the surf and sea lifestyle, offering products for those who love the ocean and outdoor water activities."},{"@type":"WebSite","@id":"https://heatwave-1.zappy5.app#website","url":"https://heatwave-1.zappy5.app","name":"Heatwave","publisher":{"@id":"https://heatwave-1.zappy5.app#organization"},"inLanguage":"he"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://heatwave-1.zappy5.app"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://heatwave-1.zappy5.app/contact"}]},{"@type":"ContactPage","@id":"https://heatwave-1.zappy5.app/contact#contactpage","url":"https://heatwave-1.zappy5.app/contact","name":"צור קשר — Heatwave","mainEntity":{"@id":"https://heatwave-1.zappy5.app#organization"},"potentialAction":{"@type":"CommunicateAction","target":{"@type":"EntryPoint","urlTemplate":"https://heatwave-1.zappy5.app/api/email/contact-form","actionPlatform":["http/method=POST"],"contentType":"application/json"},"instrument":[{"@type":"PropertyValue","name":"name","propertyID":"text","valueRequired":true,"description":"מה שמך?"},{"@type":"PropertyValue","name":"email","propertyID":"email","valueRequired":true,"description":"your@email.com"},{"@type":"PropertyValue","name":"phone","propertyID":"tel","valueRequired":false,"description":"05X-XXX-XXXX"},{"@type":"PropertyValue","name":"message","propertyID":"textarea","valueRequired":true,"description":"ספרו לנו על מה שמחפשים — ציוד גלישה, בגדי ים, מידות, שאלות..."},{"@type":"PropertyValue","name":"privacy_consent","propertyID":"checkbox","valueRequired":true}]}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://heatwave-1.zappy5.app#organization","name":"Heatwave","url":"https://heatwave-1.zappy5.app","description":"An online store specializing in surfing equipment and swimwear, targeting beach and water sports enthusiasts. The brand revolves around the surf and sea lifestyle, offering products for those who love the ocean and outdoor water activities."},{"@type":"WebSite","@id":"https://heatwave-1.zappy5.app#website","url":"https://heatwave-1.zappy5.app","name":"Heatwave","publisher":{"@id":"https://heatwave-1.zappy5.app#organization"},"inLanguage":"he"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://heatwave-1.zappy5.app"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://heatwave-1.zappy5.app/contact"}]},{"@type":"ContactPage","@id":"https://heatwave-1.zappy5.app/contact#contactpage","url":"https://heatwave-1.zappy5.app/contact","name":"צור קשר — Heatwave","mainEntity":{"@id":"https://heatwave-1.zappy5.app#organization"},"potentialAction":{"@type":"CommunicateAction","target":{"@type":"EntryPoint","urlTemplate":"https://heatwave-1.zappy5.app/api/email/contact-form","actionPlatform":["http/method=POST"],"contentType":"application/json"},"instrument":[{"@type":"PropertyValue","name":"name","propertyID":"text","valueRequired":true,"description":"מה שמך?"},{"@type":"PropertyValue","name":"email","propertyID":"email","valueRequired":true,"description":"your@email.com"},{"@type":"PropertyValue","name":"phone","propertyID":"tel","valueRequired":false,"description":"05X-XXX-XXXX"},{"@type":"PropertyValue","name":"message","propertyID":"textarea","valueRequired":true,"description":"ספרו לנו על מה שמחפשים — ציוד גלישה, בגדי ים, מידות, שאלות..."},{"@type":"PropertyValue","name":"privacy_consent","propertyID":"checkbox","valueRequired":false}]}}]}</script>
     <title data-i18n="contact_page_title">צור קשר — Heatwave</title>
   
   
@@ -1098,57 +1098,444 @@ html[dir="rtl"] body {
 }
 
 </style>
-    <link rel="stylesheet" href="/styles.css">
 
-    <style id="zappy-dropdown-submenu-styles">
-      /* ========== DESKTOP DROPDOWN SUBMENU STYLES ========== */
-      /* Base styles for dropdown submenus - parent must be positioned */
-      .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { position: relative; }
-      /* Submenu base - hidden by default */
-      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; background: white; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
-      /* CRITICAL: Desktop hover styles to show dropdown */
-      .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
-      /* Submenu item styling */
-      .sub-menu li { list-style: none; margin: 0; padding: 0; }
-      .sub-menu a { display: block !important; padding: 10px 16px !important; color: var(--text-dark, #333) !important; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color 0.2s; }
-      .sub-menu .zappy-nav-child > a { padding-left: 28px !important; font-size: 0.9em !important; opacity: 0.85 !important; }
-      [dir="rtl"] .sub-menu .zappy-nav-child > a, html[lang="he"] .sub-menu .zappy-nav-child > a, html[lang="ar"] .sub-menu .zappy-nav-child > a { padding-left: 10px !important; padding-right: 28px !important; }
-      .sub-menu .zappy-nav-parent > a { font-weight: 600 !important; }
-      .sub-menu a:hover { background-color: #f5f5f5; }
-      /* RTL (Hebrew/Arabic) dropdown positioning */
-      [dir="rtl"] .nav-menu .sub-menu, [dir="rtl"] nav .sub-menu, [dir="rtl"] .navbar .sub-menu, html[lang="he"] .nav-menu .sub-menu, html[lang="he"] nav .sub-menu, html[lang="he"] .navbar .sub-menu, html[lang="ar"] .nav-menu .sub-menu, html[lang="ar"] nav .sub-menu, html[lang="ar"] .navbar .sub-menu { left: auto !important; right: 0 !important; }
-      /* Hide empty dropdown menus (exclude catalog sub-menus that use <a> children instead of <li>) */
-      .sub-menu:empty, .sub-menu:not(:has(li:not(.zappy-hidden-menu-item))):not(:has(> a)), .sub-menu:not(:has(li)):not(:has(> a)) { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
-      /* Desktop: show submenu on Menu Group hover */
-      li:has(.menu-group-title):hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
-      /* Menu Group title styling */
-      .nav-menu > li > .menu-group-title, #navMenu > li > .menu-group-title { display: inline-block; padding: 0.5rem 1rem; cursor: default; user-select: none; }
-      
-      /* ========== MOBILE SUBMENU STYLES ========== */
-      @media (max-width: 768px) {
-        .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { position: static !important; transform: none !important; box-shadow: none !important; background: transparent !important; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; padding: 0 !important; border-radius: 0 !important; }
-        .navbar .sub-menu.mobile-expanded, .nav-menu .sub-menu.mobile-expanded, #navMenu .sub-menu.mobile-expanded { max-height: none !important; overflow-y: visible !important; opacity: 1 !important; visibility: visible !important; padding: 8px 0 8px 16px !important; }
-        [dir="rtl"] .sub-menu.mobile-expanded, html[lang="he"] .sub-menu.mobile-expanded { padding: 8px 16px 8px 0 !important; }
-        /* Disable hover behavior on mobile */
-        .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 0; visibility: hidden; pointer-events: none; }
-        .nav-menu li > .sub-menu.mobile-expanded, nav li > .sub-menu.mobile-expanded, .navbar li > .sub-menu.mobile-expanded, #navMenu li > .sub-menu.mobile-expanded { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
-        .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { display: flex !important; flex-wrap: wrap !important; align-items: center !important; position: relative !important; min-height: 44px !important; }
-        .nav-menu li:has(.sub-menu) > a, nav li:has(.sub-menu) > a, .navbar li:has(.sub-menu) > a, #navMenu li:has(.sub-menu) > a { flex: 1 !important; min-width: 0 !important; }
-        .nav-menu li:has(.sub-menu) > .menu-group-title, nav li:has(.sub-menu) > .menu-group-title, .navbar li:has(.sub-menu) > .menu-group-title, #navMenu li:has(.sub-menu) > .menu-group-title { flex: 1 !important; min-width: 0 !important; padding: 0 !important; line-height: inherit !important; }
-        .nav-menu li:has(.sub-menu) > .sub-menu, nav li:has(.sub-menu) > .sub-menu, .navbar li:has(.sub-menu) > .sub-menu, #navMenu li:has(.sub-menu) > .sub-menu { flex-basis: 100% !important; width: 100% !important; }
-        .nav-menu li:has(.sub-menu) > a [class*="chevron"], .nav-menu li:has(.sub-menu) > a [class*="arrow"], .nav-menu li:has(.sub-menu) > a .fa-chevron-down, .nav-menu li:has(.sub-menu) > a .fa-angle-down, nav li:has(.sub-menu) > a [class*="chevron"], nav li:has(.sub-menu) > a [class*="arrow"], #navMenu li:has(.sub-menu) > a [class*="chevron"], #navMenu li:has(.sub-menu) > a [class*="arrow"] { display: none !important; visibility: hidden !important; }
-        .mobile-submenu-toggle { display: flex !important; align-items: center !important; justify-content: center !important; width: 44px !important; height: auto !important; background: transparent !important; border: none !important; cursor: pointer !important; color: var(--text-dark) !important; position: static !important; flex-shrink: 0 !important; align-self: stretch !important; z-index: 2 !important; padding: 0 !important; margin: 0 !important; }
-        .mobile-submenu-toggle::after { content: '' !important; width: 0 !important; height: 0 !important; border-left: 6px solid transparent !important; border-right: 6px solid transparent !important; border-top: 7px solid currentColor !important; transition: transform 0.3s ease !important; }
-        .mobile-submenu-toggle.expanded::after { transform: rotate(180deg) !important; }
-        .sub-menu a { padding: 10px 0 !important; display: block !important; color: var(--text-dark) !important; white-space: normal !important; }
-        .sub-menu .zappy-nav-child > a { padding-left: 28px !important; font-size: 0.9em !important; opacity: 0.85 !important; }
-        [dir="rtl"] .sub-menu .zappy-nav-child > a, html[lang="he"] .sub-menu .zappy-nav-child > a, html[lang="ar"] .sub-menu .zappy-nav-child > a { padding-left: 0 !important; padding-right: 28px !important; }
-        .sub-menu .zappy-nav-parent > a { font-weight: 600 !important; }
-        .nav-menu.active, #navMenu.active { max-width: 100vw !important; overflow-x: hidden !important; box-sizing: border-box !important; }
-        .navbar .sub-menu li a, nav.navbar .sub-menu li a, .zappy-products-dropdown .sub-menu a { color: var(--text-dark) !important; }
-      }
-      @media (min-width: 769px) { .mobile-submenu-toggle { display: none !important; } }
-    </style>
+          <style id="zappy-cta-mobile-style">
+            /* Hide CTA list item on desktop (tablets and up) */
+            @media (min-width: 769px) {
+              .nav-cta-item-mobile {
+                display: none !important;
+              }
+            }
+            /* Show CTA list item on mobile */
+            @media (max-width: 768px) {
+              .nav-cta-item-mobile {
+                display: list-item !important;
+              }
+            }
+          </style>
+        
+          <style id="zappy-nested-menu-style">
+            /* Desktop only: vertically center nav items */
+            @media (min-width: 769px) {
+              .nav-menu,
+              #navMenu {
+                align-items: center !important;
+              }
+            }
+            
+            /* Menu Group styling (non-clickable parent) - TOP LEVEL ONLY with ultra-specific selector */
+            .nav-menu > li > .menu-group-title,
+            #navMenu > li > .menu-group-title {
+              display: inline-block !important;
+              padding: 0.5rem 1rem !important;
+              color: var(--nav-color) !important;
+              font-weight: 500 !important;
+              line-height: 1.7 !important;
+              cursor: default !important;
+              user-select: none !important;
+              vertical-align: middle !important;
+              text-decoration: none !important;
+              margin: 0 !important;
+              transition: color 0.3s ease !important;
+            }
+            
+            .nav-menu > li > .menu-group-title:hover,
+            #navMenu > li > .menu-group-title:hover {
+              color: var(--nav-hover-color) !important;
+            }
+            
+            /* Desktop: show submenu on Menu Group hover */
+            li:has(.menu-group-title):hover > .sub-menu {
+              opacity: 1 !important;
+              visibility: visible !important;
+              transform: translateY(0) !important;
+              pointer-events: auto !important; /* Enable interaction when hovering */
+            }
+            
+            /* Hide menu items marked as hidden (overrides hover states) */
+            .zappy-hidden-menu-item,
+            li:has(.menu-group-title):hover > .sub-menu .zappy-hidden-menu-item {
+              display: none !important;
+              opacity: 0 !important;
+              visibility: hidden !important;
+              pointer-events: none !important;
+            }
+            
+            /* Keep submenu visible when hovering over the submenu itself */
+            .sub-menu:hover {
+              opacity: 1 !important;
+              visibility: visible !important;
+              pointer-events: auto !important;
+            }
+            
+            /* Nested dropdown menu styles - using more specific selectors */
+            .nav-menu .sub-menu,
+            nav .sub-menu,
+            .navbar .sub-menu {
+              display: block !important; /* Ensure submenu is in the DOM */
+              position: absolute !important;
+              top: 100%;
+              left: 0;
+              right: auto;
+              min-width: 200px;
+              background: white;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+              border-radius: 8px;
+              padding: 8px 0;
+              margin-top: 0px; /* Remove gap to prevent hover loss */
+              opacity: 0 !important;
+              visibility: hidden !important;
+              transform: translateY(-10px);
+              transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+              z-index: 1000;
+              list-style: none;
+              pointer-events: none; /* Prevent interaction when hidden */
+            }
+            
+            /* RTL (Hebrew/Arabic) submenu positioning - align to right instead of left */
+            [dir="rtl"] .nav-menu .sub-menu,
+            [dir="rtl"] nav .sub-menu,
+            [dir="rtl"] .navbar .sub-menu,
+            html[lang="he"] .nav-menu .sub-menu,
+            html[lang="he"] nav .sub-menu,
+            html[lang="he"] .navbar .sub-menu,
+            html[lang="ar"] .nav-menu .sub-menu,
+            html[lang="ar"] nav .sub-menu,
+            html[lang="ar"] .navbar .sub-menu {
+              left: auto;
+              right: 0;
+            }
+            
+            /* Show submenu on parent hover - more specific selectors */
+            .nav-menu li:hover > .sub-menu,
+            nav li:hover > .sub-menu,
+            .navbar li:hover > .sub-menu {
+              opacity: 1 !important;
+              visibility: visible !important;
+              transform: translateY(0) !important;
+              pointer-events: auto !important; /* Enable interaction when visible */
+            }
+            
+            /* Parent item must be relatively positioned */
+            .nav-menu li:has(.sub-menu),
+            nav li:has(.sub-menu),
+            .navbar li:has(.sub-menu) {
+              position: relative;
+            }
+            
+            /* Style for submenu items */
+            .sub-menu li {
+              list-style: none;
+              margin: 0;
+              padding: 0;
+            }
+            
+            .sub-menu a,
+            .sub-menu .menu-group-title {
+              display: block !important;
+              padding: 10px 12px !important;
+              color: #333 !important;
+              font-weight: 600 !important;
+              text-decoration: none;
+              transition: background-color 0.2s;
+              white-space: nowrap;
+              cursor: default;
+            }
+            
+            .sub-menu a:hover {
+              background-color: #f5f5f5;
+            }
+            
+            /* CRITICAL: Override submenu styles for TOP-LEVEL Menu Groups only - must come AFTER submenu styles */
+            .nav-menu > li > .menu-group-title,
+            #navMenu > li > .menu-group-title {
+              display: inline-block !important;
+              padding: 0.5rem 1rem !important;
+              color: var(--nav-color) !important;
+              font-weight: 500 !important;
+              line-height: 1.7 !important;
+              cursor: default !important;
+              user-select: none !important;
+              vertical-align: middle !important;
+              text-decoration: none !important;
+              margin: 0 !important;
+              transition: color 0.3s ease !important;
+            }
+            
+            .nav-menu > li > .menu-group-title:hover,
+            #navMenu > li > .menu-group-title:hover {
+              color: var(--nav-hover-color) !important;
+              background-color: transparent !important;
+            }
+            
+            /* On mobile, show nested menus as expandable accordion */
+            @media (max-width: 768px) {
+              /* Mobile submenu styling */
+              .nav-menu .sub-menu,
+              nav .sub-menu,
+              .navbar .sub-menu {
+                position: static !important;
+                transform: none !important;
+                box-shadow: none !important;
+                background: transparent !important;
+                margin-top: 0 !important;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                visibility: hidden;
+                transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease, padding 0.3s ease;
+                padding: 0 !important;
+                border-radius: 0 !important;
+              }
+              
+              /* Expanded state — no internal scroll; parent navMenu scrolls */
+              .sub-menu.mobile-expanded {
+                max-height: none !important;
+                overflow-y: visible !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                padding: 8px 0 8px 16px !important;
+              }
+              
+              /* RTL padding adjustment */
+              [dir="rtl"] .sub-menu.mobile-expanded,
+              html[lang="he"] .sub-menu.mobile-expanded,
+              html[lang="ar"] .sub-menu.mobile-expanded {
+                padding: 8px 16px 8px 0 !important;
+              }
+              
+              /* Disable hover behavior on mobile */
+              .nav-menu li:hover > .sub-menu,
+              nav li:hover > .sub-menu,
+              .navbar li:hover > .sub-menu {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+              }
+              
+              /* Enable visibility for expanded submenus */
+              .nav-menu li > .sub-menu.mobile-expanded,
+              nav li > .sub-menu.mobile-expanded,
+              .navbar li > .sub-menu.mobile-expanded {
+                opacity: 1 !important;
+                visibility: visible !important;
+                pointer-events: auto !important;
+              }
+              
+              .sub-menu a {
+                padding: 10px 0 !important;
+                display: block !important;
+                font-size: 14px !important;
+                white-space: normal !important;
+              }
+              
+              .sub-menu a:hover {
+                background-color: transparent !important;
+              }
+              
+              /* Parent item wrapper - flex layout with relative positioning for absolute toggle */
+              .nav-menu li:has(.sub-menu),
+              nav li:has(.sub-menu),
+              .navbar li:has(.sub-menu) {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                align-items: center !important;
+                position: relative !important;
+                min-height: 44px !important;
+              }
+              
+              /* Parent link - takes full width since toggle is absolute (not a flex child) */
+              .nav-menu li:has(.sub-menu) > a,
+              nav li:has(.sub-menu) > a,
+              .navbar li:has(.sub-menu) > a,
+              .nav-menu > li > .menu-group-title,
+              #navMenu > li > .menu-group-title {
+                flex: 1 !important;
+                min-width: 0 !important;
+              }
+              
+              /* Normalize menu-group-title in mobile nav to match link alignment */
+              .nav-menu > li > .menu-group-title,
+              #navMenu > li > .menu-group-title {
+                padding: 0 !important;
+                line-height: inherit !important;
+              }
+              
+              /* Submenu takes full width below parent */
+              .nav-menu li:has(.sub-menu) > .sub-menu,
+              nav li:has(.sub-menu) > .sub-menu,
+              .navbar li:has(.sub-menu) > .sub-menu {
+                flex-basis: 100% !important;
+                width: 100% !important;
+              }
+              
+              /* HIDE EXISTING CHEVRONS/ARROWS from cloned sites to prevent duplicates */
+              .nav-menu li:has(.sub-menu) > a .fa-chevron-down,
+              .nav-menu li:has(.sub-menu) > a .fa-angle-down,
+              .nav-menu li:has(.sub-menu) > a [class*="chevron"],
+              .nav-menu li:has(.sub-menu) > a [class*="arrow"],
+              nav li:has(.sub-menu) > a [class*="chevron"],
+              nav li:has(.sub-menu) > a [class*="arrow"],
+              #navMenu li:has(.sub-menu) > a [class*="chevron"],
+              #navMenu li:has(.sub-menu) > a [class*="arrow"] {
+                display: none !important;
+                visibility: hidden !important;
+              }
+              
+              /* Toggle arrow button - flex child that stretches to match nav-link height */
+              .mobile-submenu-toggle {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 44px !important;
+                height: auto !important;
+                background: transparent !important;
+                border: none !important;
+                cursor: pointer !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                position: static !important;
+                flex-shrink: 0 !important;
+                align-self: stretch !important;
+                z-index: 2 !important;
+                -webkit-tap-highlight-color: transparent;
+              }
+              
+              .mobile-submenu-toggle::after {
+                content: '' !important;
+                display: block !important;
+                width: 0 !important;
+                height: 0 !important;
+                border-left: 6px solid transparent !important;
+                border-right: 6px solid transparent !important;
+                border-top: 7px solid currentColor !important;
+                transition: transform 0.3s ease !important;
+              }
+              
+              /* Rotate arrow when expanded */
+              .mobile-submenu-toggle.expanded::after {
+                transform: rotate(180deg) !important;
+              }
+            }
+            
+            /* Hide toggle button on desktop */
+            @media (min-width: 769px) {
+              .mobile-submenu-toggle {
+                display: none !important;
+              }
+            }
+          </style>
+          
+          <script id="zappy-mobile-menu-script">
+            // Mobile menu toggle for nested submenus (including Menu Groups)
+            // Uses separate toggle button - link navigates, arrow toggles submenu
+            (function() {
+              function initMobileMenuToggles() {
+                // Only run on mobile
+                if (window.innerWidth > 768) {
+                  // Remove any toggle buttons on desktop
+                  document.querySelectorAll('.mobile-submenu-toggle').forEach(btn => btn.remove());
+                  document.querySelectorAll('.sub-menu.mobile-expanded').forEach(menu => {
+                    menu.classList.remove('mobile-expanded');
+                  });
+                  console.log('[MOBILE MENU] Desktop mode - cleanup done');
+                  return;
+                }
+                
+                console.log('[MOBILE MENU] Initializing mobile menu toggles...');
+                
+                // Find all parent menu items (items with .sub-menu)
+                const menuItemsWithSubmenus = document.querySelectorAll(
+                  '.nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu)'
+                );
+                
+                console.log('[MOBILE MENU] Found', menuItemsWithSubmenus.length, 'items with submenus');
+                
+                menuItemsWithSubmenus.forEach(function(li) {
+                  // Skip if already has toggle button
+                  if (li.querySelector('.mobile-submenu-toggle')) {
+                    return;
+                  }
+                  
+                  const submenu = li.querySelector('.sub-menu');
+                  const parentLink = li.querySelector(':scope > a') || li.querySelector(':scope > .menu-group-title');
+                  
+                  if (!submenu || !parentLink) return;
+                  
+                  // Create toggle button
+                  const toggleBtn = document.createElement('button');
+                  toggleBtn.className = 'mobile-submenu-toggle';
+                  toggleBtn.setAttribute('aria-label', 'Toggle submenu');
+                  toggleBtn.setAttribute('type', 'button');
+
+                  // Insert toggle button after the link
+                  parentLink.insertAdjacentElement('afterend', toggleBtn);
+                  
+                  console.log('[MOBILE MENU] Created toggle button for:', parentLink.textContent?.trim());
+                  
+                  // Handle toggle button click - only toggles submenu
+                  toggleBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isExpanded = submenu.classList.contains('mobile-expanded');
+                    
+                    // Close all other submenus first
+                    document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) {
+                      if (menu !== submenu) {
+                        menu.classList.remove('mobile-expanded');
+                        const otherToggle = menu.parentElement.querySelector('.mobile-submenu-toggle');
+                        if (otherToggle) otherToggle.classList.remove('expanded');
+                      }
+                    });
+                    
+                    // Toggle this submenu
+                    submenu.classList.toggle('mobile-expanded');
+                    toggleBtn.classList.toggle('expanded');
+                    
+                    console.log('[MOBILE MENU] Toggled submenu:', !isExpanded ? 'expanded' : 'collapsed');
+                  });
+                  
+                  // Parent link navigates normally - no preventDefault
+                });
+              }
+              
+              // Initialize on DOM load
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initMobileMenuToggles);
+              } else {
+                initMobileMenuToggles();
+              }
+              
+              // Re-initialize on window resize (but use debounce to avoid too many calls)
+              let resizeTimer;
+              window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(initMobileMenuToggles, 250);
+              });
+              
+              // Also initialize when mobile menu becomes visible
+              // This handles cases where the mobile menu is hidden initially
+              const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                  if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    const target = mutation.target;
+                    if (target.classList.contains('active') || target.style.display !== 'none') {
+                      console.log('[MOBILE MENU] Mobile menu became visible, re-initializing...');
+                      setTimeout(initMobileMenuToggles, 100);
+                    }
+                  }
+                });
+              });
+              
+              // Observe mobile menu containers
+              const mobileMenus = document.querySelectorAll('.mobile-menu, .nav-menu, #navMenu');
+              mobileMenus.forEach(function(menu) {
+                observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style'] });
+              });
+            })();
+          </script>
+    <link rel="stylesheet" href="/styles.css">
 
     <style id="zappy-widget-visibility">
       html[dir="rtl"] .whatsapp-float { right: 20px !important; left: auto !important; }
@@ -1194,10 +1581,10 @@ html[dir="rtl"] body {
       <div class="search-wrapper">
         <input type="text" id="mobile-search-input" placeholder="חיפוש מוצרים..." autocomplete="off" data-i18n-placeholder="contact_placeholder_86">
         <button class="search-submit" id="mobile-search-submit" title="חיפוש" data-i18n-title="contact_title_95">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         </button>
         <button class="close-search" id="close-mobile-search">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
       </div>
       <div class="search-results" id="mobile-search-results"></div>
@@ -1207,16 +1594,16 @@ html[dir="rtl"] body {
   <nav class="navbar">
   <button class="mobile-toggle" id="mobileToggle" aria-label="Menu" data-i18n-aria-label="contact_aria_label_100">
     <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
     <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display: none;">
-      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
 
   <button class="phone-header-btn" data-phone="[business_phone]" aria-label="Call" data-i18n-aria-label="contact_aria_label_101">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
     </svg>
   </button>
 
@@ -1225,36 +1612,33 @@ html[dir="rtl"] body {
       <a href="/" class="logo-link">
         <img src="/assets/heatwave-logo.webp" alt="Heatwave" class="logo" data-i18n-alt="contact_alt_92">
       </a>
-    </div><ul class="nav-menu" id="navMenu">
-
-    <li class="menu-item-has-children zappy-products-dropdown">
+    </div><ul class="nav-menu" id="navMenu"><li><a href="/brand-story" data-i18n="contact_nav_82">סיפור המותג</a></li><li><a href="/surf-lifestyle" data-i18n="contact_nav_83">אורח חיים של גלישה</a></li><li class="menu-item-has-children zappy-products-dropdown">
       <a href="/products" data-i18n="contact_nav_79">
         מוצרים
         <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 9l6 6 6-6"></path>
+          <path d="M6 9l6 6 6-6"/>
         </svg>
       </a>
       <ul class="sub-menu" id="zappy-nav-category-links">
         <li><a href="/products" data-i18n="contact_nav_80">כל המוצרים</a></li>
         <!-- Categories will be loaded dynamically -->
       </ul>
-    </li>
-  <li><a href="/" data-i18n="contact_nav_81">בית</a></li><li><a href="/brand-story" data-i18n="contact_nav_82">סיפור המותג</a></li><li><a href="/surf-lifestyle" data-i18n="contact_nav_83">אורח חיים של גלישה</a></li><li><a href="/contact" data-i18n="contact_nav_84">צור קשר</a></li></ul>
+    </li><li class="menu-group-item"><span class="menu-group-title">New Menu</span></li><li><a href="/contact" data-i18n="contact_nav_84">צור קשר</a></li></ul>
 <div class="lang-switcher" data-no-icon-edit="true" data-icon-color="currentColor" style="position:relative;display:inline-flex;align-items:center;z-index:1000;margin:0 4px;">
   <button class="lang-switcher-current" aria-haspopup="true" aria-expanded="false" data-no-icon-edit="true" style="display:flex;align-items:center;padding:8px;background:transparent;border:none;border-radius:6px;cursor:pointer;color:inherit;">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;" data-no-icon-edit="true"><path d="M12.039,.002s0,0,0,0c-.013,0-.026-.002-.039-.002-.005,0-.009,0-.014,0-.002,0-.003,0-.005,0C5.373,.011,0,5.39,0,12s5.383,12,12,12,12-5.383,12-12S18.638,.023,12.039,.002Zm9.747,6.998h-4.814c-1.067-2.669-2.712-4.781-3.731-5.925,3.734,.421,6.901,2.719,8.546,5.925Zm-4.786,5c0,1.407-.292,2.753-.731,4H7.731c-.439-1.247-.731-2.593-.731-4s.292-2.754,.73-4h8.539c.439,1.247,.731,2.593,.731,4Zm-1.122,5c-1.229,2.838-3.116,4.99-3.878,5.788-.762-.798-2.649-2.95-3.878-5.788h7.755ZM8.121,7c1.229-2.841,3.117-4.992,3.879-5.789,.762,.798,2.649,2.95,3.878,5.789h-7.757ZM10.757,1.075c-1.025,1.15-2.668,3.264-3.73,5.925H2.214C3.859,3.795,7.024,1.498,10.757,1.075ZM1.764,8H6.668c-.403,1.247-.668,2.589-.668,4s.265,2.752,.669,4H1.764c-.487-1.242-.764-2.588-.764-4s.277-2.758,.764-4Zm.45,9H7.029c1.067,2.669,2.712,4.781,3.731,5.925-3.734-.421-6.901-2.719-8.546-5.925Zm11.026,5.925c1.019-1.144,2.664-3.257,3.731-5.925h4.814c-1.645,3.206-4.812,5.504-8.546,5.925Zm8.996-6.925h-4.905c.404-1.248,.669-2.589,.669-4s-.265-2.752-.669-4h4.905c.487,1.242,.764,2.588,.764,4s-.277,2.758-.764,4Z"></path></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;" data-no-icon-edit="true"><path d="M12.039,.002s0,0,0,0c-.013,0-.026-.002-.039-.002-.005,0-.009,0-.014,0-.002,0-.003,0-.005,0C5.373,.011,0,5.39,0,12s5.383,12,12,12,12-5.383,12-12S18.638,.023,12.039,.002Zm9.747,6.998h-4.814c-1.067-2.669-2.712-4.781-3.731-5.925,3.734,.421,6.901,2.719,8.546,5.925Zm-4.786,5c0,1.407-.292,2.753-.731,4H7.731c-.439-1.247-.731-2.593-.731-4s.292-2.754,.73-4h8.539c.439,1.247,.731,2.593,.731,4Zm-1.122,5c-1.229,2.838-3.116,4.99-3.878,5.788-.762-.798-2.649-2.95-3.878-5.788h7.755ZM8.121,7c1.229-2.841,3.117-4.992,3.879-5.789,.762,.798,2.649,2.95,3.878,5.789h-7.757ZM10.757,1.075c-1.025,1.15-2.668,3.264-3.73,5.925H2.214C3.859,3.795,7.024,1.498,10.757,1.075ZM1.764,8H6.668c-.403,1.247-.668,2.589-.668,4s.265,2.752,.669,4H1.764c-.487-1.242-.764-2.588-.764-4s.277-2.758,.764-4Zm.45,9H7.029c1.067,2.669,2.712,4.781,3.731,5.925-3.734-.421-6.901-2.719-8.546-5.925Zm11.026,5.925c1.019-1.144,2.664-3.257,3.731-5.925h4.814c-1.645,3.206-4.812,5.504-8.546,5.925Zm8.996-6.925h-4.905c.404-1.248,.669-2.589,.669-4s-.265-2.752-.669-4h4.905c.487,1.242,.764,2.588,.764,4s-.277,2.758-.764,4Z"/></svg>
   </button>
   <div class="lang-switcher-dropdown" role="menu" style="position:absolute;top:100%;right:0;margin-top:4px;min-width:140px;background:white;border:1px solid rgba(128,128,128,0.2);border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;visibility:hidden;transform:translateY(-8px);transition:all 0.2s ease;z-index:1001;">
-    <button class="lang-option" data-lang="en" style="display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;background:none;border:none;text-align:left;cursor:pointer;font-size:14px;color:#333;"><img src="https://api.iconify.design/circle-flags/us.svg" width="20" height="20" alt="" style="display:inline-block;vertical-align:middle;border-radius:50%;"> English</button>
+    <button class="lang-option" data-lang="en" style="display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;background:none;border:none;text-align:left;cursor:pointer;font-size:14px;color:#333;"><img src="https://api.iconify.design/circle-flags/us.svg" width="20" height="20" alt style="display:inline-block;vertical-align:middle;border-radius:50%;"> English</button>
   </div>
 </div>
-<script data-no-icon-edit="true">(function(){function f(){var b=document.querySelector('.lang-switcher-current');if(!b)return;var n=b.closest('nav')||b.closest('header')||b.closest('.navbar');if(!n)return;var a=n.querySelector('.nav-menu a,.nav-links a');if(!a)a=n.querySelector('a:not(.lang-option):not(.lang-switcher-current):not([class*="logo"])');if(a){var c=getComputedStyle(a).color;if(c&&c!=='rgb(0, 0, 0)'&&c!=='rgba(0, 0, 0, 0)'){b.style.color=c;return;}}var s=getComputedStyle(n).backgroundColor;if(s&&s!=='rgba(0, 0, 0, 0)'&&s!=='transparent'){var m=s.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);if(m){var l=(0.299*parseInt(m[1])+0.587*parseInt(m[2])+0.114*parseInt(m[3]))/255;b.style.color=l>0.5?'#1a1a1a':'#F3FAFF';}}}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',f);}else{setTimeout(f,0);}})()</script><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות" data-i18n-title="contact_title_96"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות" data-i18n-title="contact_title_97"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="cart-count">0</span></a><div class="nav-search-box">
+<script data-no-icon-edit="true">(function(){function f(){var b=document.querySelector('.lang-switcher-current');if(!b)return;var n=b.closest('nav')||b.closest('header')||b.closest('.navbar');if(!n)return;var a=n.querySelector('.nav-menu a,.nav-links a');if(!a)a=n.querySelector('a:not(.lang-option):not(.lang-switcher-current):not([class*="logo"])');if(a){var c=getComputedStyle(a).color;if(c&&c!=='rgb(0, 0, 0)'&&c!=='rgba(0, 0, 0, 0)'){b.style.color=c;return;}}var s=getComputedStyle(n).backgroundColor;if(s&&s!=='rgba(0, 0, 0, 0)'&&s!=='transparent'){var m=s.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);if(m){var l=(0.299*parseInt(m[1])+0.587*parseInt(m[2])+0.114*parseInt(m[3]))/255;b.style.color=l>0.5?'#1a1a1a':'#F3FAFF';}}}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',f);}else{setTimeout(f,0);}})()</script><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות" data-i18n-title="contact_title_96"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות" data-i18n-title="contact_title_97"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count">0</span></a><div class="nav-search-box">
     <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש מוצרים..." autocomplete="off" data-i18n-placeholder="contact_placeholder_87">
     <button class="nav-search-btn" id="nav-search-btn" title="חיפוש" data-i18n-title="contact_title_98">
-      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
     </button>
     <div class="nav-search-results" id="nav-search-results"></div>
-  </div></div><div class="nav-ecommerce-icons nav-icons-right"><button class="nav-search-toggle" id="mobile-search-toggle" title="חיפוש" data-i18n-title="contact_title_99"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg></button></div></div>
+  </div></div><div class="nav-ecommerce-icons nav-icons-right"><button class="nav-search-toggle" id="mobile-search-toggle" title="חיפוש" data-i18n-title="contact_title_99"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button></div></div>
 
     
 
@@ -1681,7 +2065,7 @@ html[dir="rtl"] body {
         <h1 class="contact-intro-heading" data-i18n="contact_h1_1">נשמח לשמוע<br>מכם</h1>
         <div class="contact-intro-wave-underline" aria-hidden="true">
           <svg data-no-icon-edit="true" aria-hidden="true" width="80" height="14" viewBox="0 0 80 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 10 Q10 3 20 10 Q30 17 40 10 Q50 3 60 10 Q70 17 78 10" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.8"></path>
+            <path d="M2 10 Q10 3 20 10 Q30 17 40 10 Q50 3 60 10 Q70 17 78 10" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.8"/>
           </svg>
         </div>
         <p class="contact-intro-lead" data-i18n="contact_p_13">בין אם יש לכם שאלה על ציוד גלישה, אתם מחפשים עזרה בבחירת בגדי ים מושלמים, או שאתם מועדון גלישה שרוצה לשתף פעולה – אנחנו כאן בשבילכם.</p>
@@ -1689,25 +2073,25 @@ html[dir="rtl"] body {
         <ul class="contact-intro-topics">
           <li>
             <span class="contact-intro-topic-icon" aria-hidden="true">
-              <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </span>
             <span data-i18n="contact_span_30">ייעוץ אישי בבחירת ציוד גלישה</span>
           </li>
           <li>
             <span class="contact-intro-topic-icon" aria-hidden="true">
-              <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
+              <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
             </span>
             <span data-i18n="contact_span_31">שיתופי פעולה עם מועדוני גלישה</span>
           </li>
           <li>
             <span class="contact-intro-topic-icon" aria-hidden="true">
-              <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </span>
             <span data-i18n="contact_span_32">עזרה בסטיילינג ואופנת ים</span>
           </li>
           <li>
             <span class="contact-intro-topic-icon" aria-hidden="true">
-              <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
             </span>
             <span data-i18n="contact_span_33">שאלות כלליות ושירות לקוחות</span>
           </li>
@@ -1720,12 +2104,12 @@ html[dir="rtl"] body {
           <img data-placeholder="contact-contact-intro-image-1" data-context="A warm, soft-lit lifestyle photograph of a young woman in stylish swimwear sitting on a sun-drenched beach, holding a surfboard, with gentle ocean waves in the background. The mood is calm, personal, and editorial — natural daylight, sandy tones, turquoise water. Fits a premium Israeli surf and swimwear brand called Heatwave." width="560" height="720" src="/assets/site-contact-contact-intro-image-1.webp" alt="גולשת על החוף עם גלשן ובגד ים של Heatwave" class="contact-intro-photo" data-i18n-alt="contact_alt_93">
           <div class="contact-intro-image-badge" aria-hidden="true">
             <svg data-no-icon-edit="true" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="18" cy="18" r="17" stroke="var(--primary)" stroke-width="1.5" fill="rgba(242,233,220,0.92)"></circle>
-              <line x1="18" y1="6" x2="18" y2="30" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round"></line>
-              <line x1="6" y1="18" x2="30" y2="18" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round"></line>
-              <line x1="10" y1="10" x2="26" y2="26" stroke="var(--primary)" stroke-width="1" stroke-linecap="round" opacity="0.5"></line>
-              <line x1="26" y1="10" x2="10" y2="26" stroke="var(--primary)" stroke-width="1" stroke-linecap="round" opacity="0.5"></line>
-              <circle cx="18" cy="18" r="3" fill="var(--primary)" opacity="0.8"></circle>
+              <circle cx="18" cy="18" r="17" stroke="var(--primary)" stroke-width="1.5" fill="rgba(242,233,220,0.92)"/>
+              <line x1="18" y1="6" x2="18" y2="30" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="6" y1="18" x2="30" y2="18" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="10" y1="10" x2="26" y2="26" stroke="var(--primary)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+              <line x1="26" y1="10" x2="10" y2="26" stroke="var(--primary)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+              <circle cx="18" cy="18" r="3" fill="var(--primary)" opacity="0.8"/>
             </svg>
             <span data-i18n="contact_span_34">Heatwave</span>
           </div>
@@ -1738,7 +2122,7 @@ html[dir="rtl"] body {
   <!-- Bottom divider: smooth curved line transitioning to contact details -->
   <div class="contact-intro-divider-wrapper">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,70 L0,35 Q300,0 600,28 Q900,55 1200,20 L1200,70 Z" fill="#2B2A28"></path>
+      <path d="M0,70 L0,35 Q300,0 600,28 Q900,55 1200,20 L1200,70 Z" fill="#2B2A28"/>
     </svg>
   </div>
 
@@ -1750,7 +2134,7 @@ html[dir="rtl"] body {
       <h2 class="contact-details-title" data-i18n="contact_h2_2">דברו איתנו</h2>
       <div class="contact-wave-underline" aria-hidden="true">
         <svg data-no-icon-edit="true" aria-hidden="true" width="80" height="14" viewBox="0 0 80 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 10 Q10 4 20 9 Q30 14 40 8 Q50 2 60 8 Q70 14 78 7" stroke="#C96F4A" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85"></path>
+          <path d="M2 10 Q10 4 20 9 Q30 14 40 8 Q50 2 60 8 Q70 14 78 7" stroke="#C96F4A" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85"/>
         </svg>
       </div>
       <p class="contact-details-subtitle" data-i18n="contact_p_15">אנחנו כאן בשבילכם — בין אם יש לכם שאלה על ציוד גלישה, בגדי ים, או סתם רוצים לשוחח על הים</p>
@@ -1761,8 +2145,8 @@ html[dir="rtl"] body {
       <article class="contact-block">
         <div class="contact-block-icon-wrap" aria-hidden="true">
           <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 8C4 6.9 4.9 6 6 6H26C27.1 6 28 6.9 28 8V22C28 23.1 27.1 24 26 24H6C4.9 24 4 23.1 4 22V8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
-            <path d="M4 8L16 17L28 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M4 8C4 6.9 4.9 6 6 6H26C27.1 6 28 6.9 28 8V22C28 23.1 27.1 24 26 24H6C4.9 24 4 23.1 4 22V8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M4 8L16 17L28 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <h3 class="contact-block-title" data-i18n="contact_h3_5">דוא״ל</h3>
@@ -1774,7 +2158,7 @@ html[dir="rtl"] body {
       <article class="contact-block">
         <div class="contact-block-icon-wrap" aria-hidden="true">
           <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.5 5H8C6.3 5 5 6.3 5 8C5 20.1 11.9 27 24 27C25.7 27 27 25.7 27 24V21.5L22 19L20 21.5C18 20.5 11.5 14 10.5 12L13 10L10.5 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+            <path d="M10.5 5H8C6.3 5 5 6.3 5 8C5 20.1 11.9 27 24 27C25.7 27 27 25.7 27 24V21.5L22 19L20 21.5C18 20.5 11.5 14 10.5 12L13 10L10.5 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
           </svg>
         </div>
         <h3 class="contact-block-title" data-i18n="contact_h3_6">טלפון</h3>
@@ -1786,9 +2170,9 @@ html[dir="rtl"] body {
       <article class="contact-block">
         <div class="contact-block-icon-wrap" aria-hidden="true">
           <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="1.8"></circle>
-            <path d="M16 5C16 5 10 12 10 17C10 20.3 12.7 23 16 23C19.3 23 22 20.3 22 17C22 12 16 5 16 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
-            <path d="M5 16H27" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            <circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M16 5C16 5 10 12 10 17C10 20.3 12.7 23 16 23C19.3 23 22 20.3 22 17C22 12 16 5 16 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M5 16H27" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
         </div>
         <h3 class="contact-block-title" data-i18n="contact_h3_7">קהילה ורשתות</h3>
@@ -1805,7 +2189,7 @@ html[dir="rtl"] body {
 
   <div class="contact-details-divider-wrapper">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,60 L0,28 Q30,18 60,26 T130,22 Q170,28 210,18 T290,24 Q340,30 390,18 T480,24 Q530,20 580,28 T670,20 Q720,26 780,16 T880,22 Q930,28 990,18 T1090,24 Q1140,20 1190,28 T1280,22 Q1340,28 1380,20 L1440,24 L1440,60 Z" fill="#F5F0E8"></path>
+      <path d="M0,60 L0,28 Q30,18 60,26 T130,22 Q170,28 210,18 T290,24 Q340,30 390,18 T480,24 Q530,20 580,28 T670,20 Q720,26 780,16 T880,22 Q930,28 990,18 T1090,24 Q1140,20 1190,28 T1280,22 Q1340,28 1380,20 L1440,24 L1440,60 Z" fill="#F5F0E8"/>
     </svg>
   </div>
 </section>
@@ -1817,8 +2201,8 @@ html[dir="rtl"] body {
   <!-- Decorative wave motif -->
   <div class="contact-form-section__wave-motif" aria-hidden="true">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 120 18" fill="none" xmlns="http://www.w3.org/2000/svg" width="120" height="18">
-      <path d="M0,9 Q10,3 20,9 T40,9 T60,9 T80,9 T100,9 T120,9" stroke="#C96F4A" stroke-width="2" fill="none" opacity="0.7"></path>
-      <path d="M10,14 Q20,8 30,14 T50,14 T70,14 T90,14 T110,14" stroke="#C96F4A" stroke-width="1.2" fill="none" opacity="0.35"></path>
+      <path d="M0,9 Q10,3 20,9 T40,9 T60,9 T80,9 T100,9 T120,9" stroke="#C96F4A" stroke-width="2" fill="none" opacity="0.7"/>
+      <path d="M10,14 Q20,8 30,14 T50,14 T70,14 T90,14 T110,14" stroke="#C96F4A" stroke-width="1.2" fill="none" opacity="0.35"/>
     </svg>
   </div>
 
@@ -1828,7 +2212,7 @@ html[dir="rtl"] body {
       <h2 class="contact-form-section__title" data-i18n="contact_h2_3">נשמח לשמוע ממך</h2>
       <div class="contact-form-section__underline" aria-hidden="true">
         <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 80 10" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="10">
-          <path d="M0,5 Q10,1 20,5 T40,5 T60,5 T80,5" stroke="#C96F4A" stroke-width="2" fill="none" opacity="0.8"></path>
+          <path d="M0,5 Q10,1 20,5 T40,5 T60,5 T80,5" stroke="#C96F4A" stroke-width="2" fill="none" opacity="0.8"/>
         </svg>
       </div>
       <p class="contact-form-section__subtitle" data-i18n="contact_p_19">כתבו לנו ונחזור אליכם בהקדם עם ייעוץ אישי לבחירת ציוד הגלישה ובגדי הים המושלמים עבורכם. כל פנייה מקבלת מענה תוך 24 שעות.</p>
@@ -1839,29 +2223,29 @@ html[dir="rtl"] body {
       <!-- Decorative sun rays in panel corner -->
       <div class="contact-form-section__sun-motif" aria-hidden="true">
         <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
-          <circle cx="30" cy="30" r="10" fill="#C96F4A" opacity="0.12"></circle>
-          <line x1="30" y1="5" x2="30" y2="15" stroke="#C96F4A" stroke-width="2" opacity="0.18"></line>
-          <line x1="30" y1="45" x2="30" y2="55" stroke="#C96F4A" stroke-width="2" opacity="0.18"></line>
-          <line x1="5" y1="30" x2="15" y2="30" stroke="#C96F4A" stroke-width="2" opacity="0.18"></line>
-          <line x1="45" y1="30" x2="55" y2="30" stroke="#C96F4A" stroke-width="2" opacity="0.18"></line>
-          <line x1="12" y1="12" x2="19" y2="19" stroke="#C96F4A" stroke-width="2" opacity="0.14"></line>
-          <line x1="41" y1="41" x2="48" y2="48" stroke="#C96F4A" stroke-width="2" opacity="0.14"></line>
-          <line x1="48" y1="12" x2="41" y2="19" stroke="#C96F4A" stroke-width="2" opacity="0.14"></line>
-          <line x1="19" y1="41" x2="12" y2="48" stroke="#C96F4A" stroke-width="2" opacity="0.14"></line>
+          <circle cx="30" cy="30" r="10" fill="#C96F4A" opacity="0.12"/>
+          <line x1="30" y1="5" x2="30" y2="15" stroke="#C96F4A" stroke-width="2" opacity="0.18"/>
+          <line x1="30" y1="45" x2="30" y2="55" stroke="#C96F4A" stroke-width="2" opacity="0.18"/>
+          <line x1="5" y1="30" x2="15" y2="30" stroke="#C96F4A" stroke-width="2" opacity="0.18"/>
+          <line x1="45" y1="30" x2="55" y2="30" stroke="#C96F4A" stroke-width="2" opacity="0.18"/>
+          <line x1="12" y1="12" x2="19" y2="19" stroke="#C96F4A" stroke-width="2" opacity="0.14"/>
+          <line x1="41" y1="41" x2="48" y2="48" stroke="#C96F4A" stroke-width="2" opacity="0.14"/>
+          <line x1="48" y1="12" x2="41" y2="19" stroke="#C96F4A" stroke-width="2" opacity="0.14"/>
+          <line x1="19" y1="41" x2="12" y2="48" stroke="#C96F4A" stroke-width="2" opacity="0.14"/>
         </svg>
       </div>
 
-      <form class="contact-form" novalidate="">
+      <form class="contact-form" novalidate>
         <!-- Name Field -->
         <div class="contact-form-section__field-group">
           <label class="contact-form-section__label" for="cf-name" data-i18n="contact_label_68">שם מלא</label>
-          <input class="contact-form-section__input" type="text" id="cf-name" name="name" placeholder="מה שמך?" autocomplete="name" required="" data-i18n-placeholder="contact_placeholder_88">
+          <input class="contact-form-section__input" type="text" id="cf-name" name="name" placeholder="מה שמך?" autocomplete="name" required data-i18n-placeholder="contact_placeholder_88">
         </div>
 
         <!-- Email Field -->
         <div class="contact-form-section__field-group">
           <label class="contact-form-section__label" for="cf-email" data-i18n="contact_label_69">כתובת אימייל</label>
-          <input class="contact-form-section__input" type="email" id="cf-email" name="email" placeholder="your@email.com" autocomplete="email" required="" data-i18n-placeholder="contact_placeholder_89">
+          <input class="contact-form-section__input" type="email" id="cf-email" name="email" placeholder="your@email.com" autocomplete="email" required data-i18n-placeholder="contact_placeholder_89">
         </div>
 
         <!-- Phone Field -->
@@ -1873,13 +2257,13 @@ html[dir="rtl"] body {
         <!-- Message Field -->
         <div class="contact-form-section__field-group">
           <label class="contact-form-section__label" for="cf-message" data-i18n="contact_label_71">הודעה</label>
-          <textarea class="contact-form-section__input contact-form-section__textarea" id="cf-message" name="message" placeholder="ספרו לנו על מה שמחפשים — ציוד גלישה, בגדי ים, מידות, שאלות..." rows="5" required="" data-i18n-placeholder="contact_placeholder_91"></textarea>
+          <textarea class="contact-form-section__input contact-form-section__textarea" id="cf-message" name="message" placeholder="ספרו לנו על מה שמחפשים — ציוד גלישה, בגדי ים, מידות, שאלות..." rows="5" required data-i18n-placeholder="contact_placeholder_91"></textarea>
         </div>
 
         <!-- Privacy Consent -->
         <div class="privacy-consent">
           <label class="privacy-consent-label">
-            <input type="checkbox" name="privacy_consent" class="privacy-consent-checkbox" required="">
+            <input type="checkbox" name="privacy_consent" class="privacy-consent-checkbox" required>
             <span><span data-i18n="contact_text_72_0">קראתי ואני מסכים/ה ל</span><a href="/terms" target="_blank" data-i18n="contact_link_53">תנאי השימוש</a><span class="separator">|</span>
             <a href="/return-policy" aria-label="מדיניות החזרות" data-i18n="contact_link_54" data-i18n-aria-label="contact_aria_label_102">
               מדיניות החזרות
@@ -1907,8 +2291,8 @@ html[dir="rtl"] body {
   <!-- Bottom arc divider transitioning to next section -->
   <div class="contact-form-section__divider-wrapper">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,70 L0,40 Q300,5 600,30 Q900,55 1200,20 L1200,70 Z" fill="#E8EFF2" opacity="0.18"></path>
-      <path d="M0,70 L0,52 Q300,22 600,44 Q900,62 1200,36 L1200,70 Z" fill="#E8EFF2"></path>
+      <path d="M0,70 L0,40 Q300,5 600,30 Q900,55 1200,20 L1200,70 Z" fill="#E8EFF2" opacity="0.18"/>
+      <path d="M0,70 L0,52 Q300,22 600,44 Q900,62 1200,36 L1200,70 Z" fill="#E8EFF2"/>
     </svg>
   </div>
 </section>
@@ -1919,7 +2303,7 @@ html[dir="rtl"] body {
     <div class="contact-location-header">
       <h2 class="contact-location-title" data-i18n="contact_h2_4">איפה אנחנו נמצאים?</h2>
       <svg class="wave-underline-svg" data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 80 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,6 Q10,0 20,6 T40,6 T60,6 T80,6" stroke="var(--primary)" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
+        <path d="M0,6 Q10,0 20,6 T40,6 T60,6 T80,6" stroke="var(--primary)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
       </svg>
       <p class="contact-location-intro" data-i18n="contact_p_21">Heatwave היא חנות אונליין המוקדשת לאוהבי הים, הגלים, והחוף. אנחנו מגיעים אליכם — לכל חוף, לכל גל, לכל הרפתקה ימית.</p>
     </div>
@@ -1931,9 +2315,9 @@ html[dir="rtl"] body {
         <div class="contact-location-presence">
           <div class="contact-location-icon-wrap">
             <svg data-element-type="icon" data-icon-type="svg" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"></circle>
-              <path d="M18 8 C18 8 10 14 10 20 C10 24.4 13.6 28 18 28 C22.4 28 26 24.4 26 20 C26 14 18 8 18 8Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"></path>
-              <path d="M10 20 Q14 17 18 20 Q22 23 26 20" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path>
+              <circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
+              <path d="M18 8 C18 8 10 14 10 20 C10 24.4 13.6 28 18 28 C22.4 28 26 24.4 26 20 C26 14 18 8 18 8Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+              <path d="M10 20 Q14 17 18 20 Q22 23 26 20" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/>
             </svg>
           </div>
           <div class="contact-location-presence-text">
@@ -1979,10 +2363,10 @@ html[dir="rtl"] body {
         <div class="contact-location-shipping">
           <div class="contact-location-shipping-icon-wrap">
             <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="2" y="10" width="20" height="14" rx="3" stroke="currentColor" stroke-width="1.8" fill="none"></rect>
-              <path d="M22 14 L28 14 L30 22 L22 22" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"></path>
-              <circle cx="8" cy="26" r="2.5" stroke="currentColor" stroke-width="1.6" fill="none"></circle>
-              <circle cx="24" cy="26" r="2.5" stroke="currentColor" stroke-width="1.6" fill="none"></circle>
+              <rect x="2" y="10" width="20" height="14" rx="3" stroke="currentColor" stroke-width="1.8" fill="none"/>
+              <path d="M22 14 L28 14 L30 22 L22 22" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+              <circle cx="8" cy="26" r="2.5" stroke="currentColor" stroke-width="1.6" fill="none"/>
+              <circle cx="24" cy="26" r="2.5" stroke="currentColor" stroke-width="1.6" fill="none"/>
             </svg>
           </div>
           <div class="contact-location-shipping-text">
@@ -1995,8 +2379,8 @@ html[dir="rtl"] body {
 
       <div class="contact-location-card-decoration" aria-hidden="true">
         <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="contact-location-bg-wave">
-          <path d="M0,100 Q25,70 50,100 T100,100 T150,100 T200,100 L200,200 L0,200 Z" fill="var(--secondary)" opacity="0.12"></path>
-          <path d="M0,130 Q25,105 50,130 T100,130 T150,130 T200,130 L200,200 L0,200 Z" fill="var(--secondary)" opacity="0.10"></path>
+          <path d="M0,100 Q25,70 50,100 T100,100 T150,100 T200,100 L200,200 L0,200 Z" fill="var(--secondary)" opacity="0.12"/>
+          <path d="M0,130 Q25,105 50,130 T100,130 T150,130 T200,130 L200,200 L0,200 Z" fill="var(--secondary)" opacity="0.10"/>
         </svg>
       </div>
 
@@ -2059,8 +2443,8 @@ html[dir="rtl"] body {
         <p class="footer-mood-text" data-i18n="contact_p_26">ספורט ימי · אופנת ים · אורח חיים חופי</p>
         <div class="footer-wave-deco" aria-hidden="true">
           <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,30 C30,10 70,50 100,30 C130,10 170,50 200,30" stroke="#C96F4A" stroke-width="2.5" fill="none" opacity="0.6"></path>
-            <path d="M0,42 C30,22 70,62 100,42 C130,22 170,62 200,42" stroke="#7A9EAE" stroke-width="2" fill="none" opacity="0.45"></path>
+            <path d="M0,30 C30,10 70,50 100,30 C130,10 170,50 200,30" stroke="#C96F4A" stroke-width="2.5" fill="none" opacity="0.6"/>
+            <path d="M0,42 C30,22 70,62 100,42 C130,22 170,62 200,42" stroke="#7A9EAE" stroke-width="2" fill="none" opacity="0.45"/>
           </svg>
         </div>
         <p class="footer-mood-sub" data-i18n="contact_p_27">פרמיום · בר-קיימא · עיצוב ים תיכוני</p>

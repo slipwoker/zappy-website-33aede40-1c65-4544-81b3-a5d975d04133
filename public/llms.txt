@@ -6,53 +6,56 @@
 
 ## Pages
 
-### בית
+### בגדי ים — Heatwave
 https://heatwave-1.zappy5.app
 ציוד גלישה מקצועי ובגדי ים שמחכים לכם בים. חנות Heatwave מביאה לכם את הקולקציה החמה ביותר לחובבי הגלים, הים והספורט הימי. קנו עכשיו!
 
-### סיפור המותג
+### סיפור המותג — Heatwave
 https://heatwave-1.zappy5.app/brand-story
 סיפור המותג | Heatwave. בגדי ים
 
-### אורח חיים של גלישה
+### אורח חיים של גלישה — Heatwave
 https://heatwave-1.zappy5.app/surf-lifestyle
 אורח חיים של גלישה | Heatwave. בגדי ים
 
-### צור קשר
-https://heatwave-1.zappy5.app/contact
-צור קשר | Heatwave. בגדי ים
-
-### Products
+### מוצרים
 https://heatwave-1.zappy5.app/products
 המוצרים שלנו - Heatwave
 
-### Cart
+### עגלת קניות
 https://heatwave-1.zappy5.app/cart
 עגלת הקניות שלך
 
-### Checkout
+### תשלום
 https://heatwave-1.zappy5.app/checkout
 תשלום
 
-### Login
+### התחברות
 https://heatwave-1.zappy5.app/login
 התחברות לקוחות
 
-### Account
+### החשבון שלי
 https://heatwave-1.zappy5.app/account
 החשבון שלי
 
-### Order Success
+### ההזמנה התקבלה!
 https://heatwave-1.zappy5.app/order-success
 תודה על ההזמנה
 
-### Product Detail
+### פרטי המוצר
 https://heatwave-1.zappy5.app/product/:slug
 פרטי המוצר - Heatwave
 
-### Category
+### מוצרים
 https://heatwave-1.zappy5.app/category/:slug
 מוצרים - Heatwave
+
+### Page
+https://heatwave-1.zappy5.app/menu-group-1779092161278
+
+### צור קשר — Heatwave
+https://heatwave-1.zappy5.app/contact
+צור קשר | Heatwave. בגדי ים
 
 ## Legal & Policy
 
