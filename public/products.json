@@ -1,34 +1,8 @@
 {
   "@context": "https://schema.org",
-  "generated_at": "2026-05-27T11:44:54.248Z",
+  "generated_at": "2026-05-30T13:46:28.974Z",
   "base_url": "https://heatwave-1.zappy5.app",
   "currency": "ILS",
-  "count": 1,
-  "products": [
-    {
-      "id": "ddc70118-05cf-4112-a822-af4a585ee4b7",
-      "slug": "glshn-shl-mykal-babvdt-yd-es8ye8",
-      "name": "גלשן של מיכאל בעבודת יד",
-      "name_translations": {
-        "en": "Michael's Handcrafted Surfboard",
-        "he": "גלשן של מיכאל בעבודת יד"
-      },
-      "description": "",
-      "short_description": null,
-      "sku": null,
-      "brand": null,
-      "price": 999,
-      "base_price": 1500,
-      "sale_price": 999,
-      "currency": "ILS",
-      "images": [
-        "https://heatwave-1.zappy5.app/assets/image-product-image-1778671634097-o0k62m.webp"
-      ],
-      "in_stock": true,
-      "stock_status": "in_stock",
-      "url": "https://heatwave-1.zappy5.app/product/glshn-shl-mykal-babvdt-yd-es8ye8",
-      "categories": [],
-      "updated_at": "2026-05-14T15:09:41.973Z"
-    }
-  ]
+  "count": 0,
+  "products": []
 }

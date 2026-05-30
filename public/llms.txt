@@ -50,9 +50,6 @@ https://heatwave-1.zappy5.app/product/:slug
 https://heatwave-1.zappy5.app/category/:slug
 מוצרים - Heatwave
 
-### Page
-https://heatwave-1.zappy5.app/menu-group-1779092161278
-
 ### צור קשר — Heatwave
 https://heatwave-1.zappy5.app/contact
 צור קשר | Heatwave. בגדי ים
@@ -75,13 +72,7 @@ Information about WCAG compliance and accessibility features.
 
 ## Products
 
-**Total active products: 1**
-
-### גלשן של מיכאל בעבודת יד
-https://heatwave-1.zappy5.app/product/glshn-shl-mykal-babvdt-yd-es8ye8
-- Price: 999.00 ILS (sale, was 1500.00 ILS)
-- Availability: In stock
-- Image: https://heatwave-1.zappy5.app/assets/image-product-image-1778671634097-o0k62m.webp
+_No products are currently configured._
 
 ---
 
