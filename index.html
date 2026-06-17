@@ -112,6 +112,37 @@
   var visitorId = getVisitorId();
   var sessionId = getSessionId();
   
+  // Site Optimization Agent — visual heatmap helpers
+  function getBandAnchor(el) {
+    var node = el;
+    while (node && node !== document.body) {
+      if (node.getAttribute && node.getAttribute('data-band-index') != null) {
+        return { bandIndex: node.getAttribute('data-band-index'), sectionId: node.id || null };
+      }
+      node = node.parentElement;
+    }
+    node = el;
+    while (node && node !== document.body) {
+      if (node.tagName === 'SECTION' && node.id) {
+        return { bandIndex: null, sectionId: node.id };
+      }
+      node = node.parentElement;
+    }
+    return { bandIndex: null, sectionId: null };
+  }
+  function heatmapFields(el, e) {
+    var anchor = getBandAnchor(el);
+    return {
+      x: Math.round((e && e.pageX) || 0),
+      y: Math.round((e && e.pageY) || 0),
+      bandIndex: anchor.bandIndex,
+      sectionId: anchor.sectionId
+    };
+  }
+  function mergeFields(base, extra) {
+    for (var k in extra) { if (Object.prototype.hasOwnProperty.call(extra, k)) base[k] = extra[k]; }
+    return base;
+  }
   // Track an event
   function trackEvent(eventType, data) {
     data = data || {};
@@ -161,26 +192,61 @@
       // Track button clicks (counted as actions)
       if (target.tagName === 'BUTTON' || target.closest('button')) {
         var button = target.tagName === 'BUTTON' ? target : target.closest('button');
-        trackEvent('click', {
+        var clickMeta = {
           element: 'button',
           text: button.textContent.trim().substring(0, 100),
           id: button.id || null,
           class: button.className || null
-        });
+        };
+        mergeFields(clickMeta, heatmapFields(button, e));
+        trackEvent('click', clickMeta);
       }
       
       // Track link clicks (navigation - not counted as actions)
       else if (target.tagName === 'A' || target.closest('a')) {
         var link = target.tagName === 'A' ? target : target.closest('a');
-        trackEvent('navigation', {
+        var navMeta = {
           element: 'link',
           text: link.textContent.trim().substring(0, 100),
           href: link.href,
           external: link.hostname !== window.location.hostname
-        });
+        };
+        mergeFields(navMeta, heatmapFields(link, e));
+        trackEvent('navigation', navMeta);
       }
     }, true);
   }
+  
+  // Track scroll depth milestones (visual heatmap reach signal)
+  (function() {
+    var milestones = [25, 50, 75, 100];
+    var fired = {};
+    var maxDepth = 0;
+    function computeDepth() {
+      var doc = document.documentElement;
+      var scrollable = (doc.scrollHeight - window.innerHeight);
+      if (scrollable <= 0) return 100;
+      return Math.min(100, Math.round(((window.scrollY || window.pageYOffset || 0) / scrollable) * 100));
+    }
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function() {
+        var depth = computeDepth();
+        if (depth > maxDepth) maxDepth = depth;
+        for (var i = 0; i < milestones.length; i++) {
+          var m = milestones[i];
+          if (depth >= m && !fired[m]) {
+            fired[m] = true;
+            trackEvent('scroll_depth', { milestone: m, maxDepthPct: maxDepth });
+          }
+        }
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
   
   // Track form submissions
   if (config.trackFormSubmissions) {
@@ -2055,10 +2121,10 @@ html[dir="rtl"] body {
 </script>
   
   <main>
-    <section class="index-hero-section" data-layout-spec="בית-hero" dir="rtl" data-hero-type="fullscreen-scrim" id="index-hero-section" style="direction: rtl; position: relative; overflow: hidden; --zappy-bg-overlay: rgba(43, 36, 28, 0); background-image: url(&quot;assets/site-index-hero-image-1-1779882867050-yo6c5p.webp?v=1779882870314&quot;) !important; min-height: 720px !important; cursor: url(&quot;data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M29.2344 9.93125L4.87351 34.2922C4.67351 34.4922 4.52976 34.7437 4.46101 35.0203L1.60789 46.4984C1.47664 47.0312 1.63289 47.5922 2.02039 47.9797C2.40945 48.3688 2.97351 48.5219 3.50164 48.3922L14.9798 45.5406C15.2548 45.4719 15.5063 45.3297 15.7079 45.1281L40.0688 20.7672L29.2344 9.93125Z' fill='%23FF0083'/%3E%3Cpath d='M46.1937 3.80781C43.2062 0.820311 38.3468 0.820311 35.3578 3.80781L31.4421 7.72344L42.2781 18.5594L46.1937 14.6437C49.1812 11.6547 49.1812 6.79531 46.1937 3.80781Z' fill='%23FF0083'/%3E%3C/svg%3E&quot;) 2 13, pointer !important; background-position: 50% 50% !important; background-size: cover !important; margin-top: -71px !important; padding-top: 71px !important;" data-zappy-bg-color="" data-zappy-bg-image="assets/site-index-hero-image-1.webp" data-zappy-bg-overlay-color="#2b241c" data-zappy-bg-overlay-opacity="0" data-zappy-bg-video-type="youtube" data-zappy-bg-video-url="https://www.youtube.com/watch?v=vYuoECsqZy8" data-zappy-bg-type="video" data-element-id="zappy-hero-bg-index-hero-section" data-element-type="background-image" data-zappy-bg-position="50% 50%" data-zappy-bg-zoom="0.5" data-zappy-content-align="center-center"><div class="zappy-section-video-bg" style="max-width: 800px; margin: 20px auto; display: flex; justify-content: center; position: relative;" data-element-type="video" data-element-id="video-1779788354635-bgv9tedr8"><div style="position: absolute; inset: 0px; z-index: 1; background: rgba(43, 36, 28, 0);"></div><iframe src="https://www.youtube.com/embed/vYuoECsqZy8" class="zappy-section-video-iframe" frameborder="0" allow="autoplay; fullscreen" allowfullscreen="true" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 0; "></iframe></div>
+    <section class="index-hero-section" data-layout-spec="בית-hero" dir="ltr" data-hero-type="fullscreen-scrim" id="index-hero-section" style="direction: ltr; position: relative; overflow: hidden; --zappy-bg-overlay: rgba(43, 36, 28, 0); background-image: url(&quot;assets/site-index-hero-image-1-1779882867050-yo6c5p.webp?v=1779882870314&quot;) !important; min-height: 647.491px !important; cursor: url(&quot;data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M29.2344 9.93125L4.87351 34.2922C4.67351 34.4922 4.52976 34.7437 4.46101 35.0203L1.60789 46.4984C1.47664 47.0312 1.63289 47.5922 2.02039 47.9797C2.40945 48.3688 2.97351 48.5219 3.50164 48.3922L14.9798 45.5406C15.2548 45.4719 15.5063 45.3297 15.7079 45.1281L40.0688 20.7672L29.2344 9.93125Z' fill='%23FF0083'/%3E%3Cpath d='M46.1937 3.80781C43.2062 0.820311 38.3468 0.820311 35.3578 3.80781L31.4421 7.72344L42.2781 18.5594L46.1937 14.6437C49.1812 11.6547 49.1812 6.79531 46.1937 3.80781Z' fill='%23FF0083'/%3E%3C/svg%3E&quot;) 2 13, pointer !important; background-position: 50% 50% !important; background-size: cover !important; margin-top: -71px !important; padding-top: 71px !important;" data-zappy-bg-color="" data-zappy-bg-image="assets/site-index-hero-image-1.webp" data-zappy-bg-overlay-color="#2b241c" data-zappy-bg-overlay-opacity="0" data-zappy-bg-video-type="youtube" data-zappy-bg-video-url="https://www.youtube.com/watch?v=vYuoECsqZy8" data-zappy-bg-type="video" data-element-id="zappy-hero-bg-index-hero-section" data-element-type="background-image" data-zappy-bg-position="50% 50%" data-zappy-bg-zoom="0.5" data-zappy-content-align="center-center"><div class="zappy-section-video-bg" style="max-width: 800px; margin: 20px auto; display: flex; justify-content: center; position: relative;" data-element-type="video" data-element-id="video-1779788354635-bgv9tedr8"><div style="position: absolute; inset: 0px; z-index: 1; background: rgba(43, 36, 28, 0);"></div><iframe src="https://www.youtube.com/embed/vYuoECsqZy8" class="zappy-section-video-iframe" frameborder="0" allow="autoplay; fullscreen" allowfullscreen="true" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 0; "></iframe></div>
   <!-- Background Image -->
   <div class="index-hero-bg" style="display: none;" data-zappy-original-bg="hidden">
-    <img data-hero-bg="true" data-placeholder="index-hero-image-1" data-context="Golden-hour cinematic beach scene: surfers carrying colorful surfboards along a sunlit shoreline, warm amber and terracotta tones, a group of stylish young adults in vibrant swimwear walking by the water" s="" edge,="" sea="" foam="" lapping="" the="" sand,="" soft="" bokeh="" ocean="" background,="" lifestyle="" photography="" for="" a="" premium="" surf="" and="" swimwear="" brand,="" warm="" mediterranean="" light,="" golden="" reflections="" on="" wet="" sand'="" width="1400" height="900" src="/assets/site-index-hero-image-1-1779882867050-yo6c5p.webp?v=1779882870314" alt="גולשים על חוף הים בשעת הזהב עם ציוד גלישה ובגדי ים צבעוניים" data-i18n-alt="home_alt_74" data-hero-background="true" data-element-type="image" data-element-id="img-1778771468514-8hats6er3" style="object-fit: cover; object-position: 50% 50%; width: 100%; height: 100%;">
+    <img data-hero-bg="true" data-placeholder="index-hero-image-1" data-context="Golden-hour cinematic beach scene: surfers carrying colorful surfboards along a sunlit shoreline, warm amber and terracotta tones, a group of stylish young adults in vibrant swimwear walking by the water" s="" edge,="" sea="" foam="" lapping="" the="" sand,="" soft="" bokeh="" ocean="" background,="" lifestyle="" photography="" for="" a="" premium="" surf="" and="" swimwear="" brand,="" warm="" mediterranean="" light,="" golden="" reflections="" on="" wet="" sand'="" width="1400" height="900" src="/assets/site-index-hero-image-1-1779882867050-yo6c5p.webp?v=1779882870314" alt="Surfers on the beach at golden hour with surf equipment and colorful swimwear" data-i18n-alt="home_alt_74" data-hero-background="true" data-element-type="image" data-element-id="img-1778771468514-8hats6er3" style="object-fit: cover; object-position: 50% 50%; width: 100%; height: 100%;">
   </div>
 
   <!-- Scrim Overlay -->
@@ -2085,7 +2151,7 @@ html[dir="rtl"] body {
   <div class="index-hero-content-wrapper" style="z-index: 2;" data-zappy-align-target="true">
     <div class="index-hero-card">
       <!-- Brand label -->
-      <p data-i18n="new_p_107" style="">ספורט ימי ובגדי ים</p><h1 class="index-hero-h1" data-i18n="home_h1_1" style="box-sizing: border-box !important; display: block !important; width: 608px !important; max-width: 608px !important; margin-left: calc(50% - 304px) !important; margin-right: calc(50% - 304px) !important; margin-inline: calc(50% - 304px) !important;" data-zappy-text-width="custom">&nbsp;הגלים קוראים לך</h1>
+      <p data-i18n="new_p_107" style="">Water Sports &amp; Swimwear</p><h1 class="index-hero-h1" data-i18n="home_h1_1" style="box-sizing: border-box !important; outline: none; text-align: center; display: block !important; width: min(226px, max(100%, -48px + 100vw)) !important; max-width: 226px !important; margin-left: calc(0.5 * (100% - min(226px, max(100%, -48px + 100vw)))) !important; margin-right: calc(0.5 * (100% - min(226px, max(100%, -48px + 100vw)))) !important; margin-inline: calc(0.5 * (100% - min(226px, max(100%, -48px + 100vw)))) !important;" data-zappy-text-width="custom">&nbsp;The waves are calling you</h1>
 
       <!-- Wave underline decoration -->
       <div class="index-hero-wave-underline" aria-hidden="true">
@@ -2097,8 +2163,8 @@ html[dir="rtl"] body {
       
 
       <div class="index-hero-ctas">
-        <a href="/contact" class="index-hero-btn-primary" data-i18n="home_link_42" style="color: rgb(0, 0, 0) !important;" data-element-type="button" data-element-id="btn-1778771468510-ti0wqd4y8" data-native-element="true">צור קשר</a>
-        <a href="/about" class="index-hero-btn-secondary btn btn-primary" data-i18n="home_link_43" data-element-type="button" data-element-id="btn-1778771468510-zwv9xoep0" data-native-element="true" style="outline: none; background-color: rgb(242, 233, 220) !important; background-image: none !important; border-color: rgb(242, 233, 220) !important; color: var(--text-color, #1a1a1a) !important;" data-text-color="dark">הסיפור שלנו</a>
+        <a href="/contact" class="index-hero-btn-primary" data-i18n="home_link_42" style="color: rgb(0, 0, 0) !important;" data-element-type="button" data-element-id="btn-1778771468510-ti0wqd4y8" data-native-element="true">Contact</a>
+        <a href="/about" class="index-hero-btn-secondary btn btn-primary" data-i18n="home_link_43" data-element-type="button" data-element-id="btn-1778771468510-zwv9xoep0" data-native-element="true" style="outline: none; background-color: rgb(242, 233, 220) !important; background-image: none !important; border-color: rgb(242, 233, 220) !important; color: var(--text-color, #1a1a1a) !important;" data-text-color="dark">Our Story</a>
       </div>
     </div>
   </div>
@@ -2606,6 +2672,12 @@ html[dir="rtl"] body {
 
 
 
+
+
+
+
+
+
 <!-- i18next Multi-Language Support (Dynamic Loader) -->
 <script>
 (function() {
@@ -2858,15 +2930,32 @@ html[dir="rtl"] body {
         }
       }
 
-      // Carry over inline formatting from the source element when the translation
-      // is plain text (mirrors the same logic in generateI18nextScript).
+      // Carry over a single inline colour/format wrapper from the source element
+      // when the translation is plain text (mirrors generateI18nextScript). The
+      // inline-editor colour picker wraps the selected text in
+      // <span style="color:#hex !important"> (legacy edits used <font color>).
+      // Without re-applying that wrapper, the textContent/innerHTML swap below
+      // destroys it and the user's picked text colour silently reverts to the
+      // CSS default on every load / language switch.
+      var wrappedFormatting = false;
       var fontChild = el.querySelector('font[color], font[face], font[size]');
-      if (fontChild && !inlineFormatPattern.test(translation)) {
-        var fontTag = '<font';
-        for (var ai = 0; ai < fontChild.attributes.length; ai++) {
-          fontTag += ' ' + fontChild.attributes[ai].name + '="' + fontChild.attributes[ai].value.replace(/"/g, '&quot;') + '"';
+      var styleWrapper = fontChild;
+      if (!styleWrapper && el.children.length === 1) {
+        var onlyChild = el.children[0];
+        if (onlyChild && onlyChild.tagName === 'SPAN' &&
+            /(^|;)\s*(color|background|background-color)\s*:/i.test(onlyChild.getAttribute('style') || '') &&
+            onlyChild.textContent.trim() === (el.textContent || '').trim()) {
+          styleWrapper = onlyChild;
         }
-        translation = fontTag + '>' + translation + '</font>';
+      }
+      if (styleWrapper && !inlineFormatPattern.test(translation) && !structuralTagPattern.test(translation)) {
+        var wrapperTag = styleWrapper.tagName.toLowerCase();
+        var openTag = '<' + wrapperTag;
+        for (var ai = 0; ai < styleWrapper.attributes.length; ai++) {
+          openTag += ' ' + styleWrapper.attributes[ai].name + '="' + styleWrapper.attributes[ai].value.replace(/"/g, '&quot;') + '"';
+        }
+        translation = openTag + '>' + translation + '</' + wrapperTag + '>';
+        wrappedFormatting = true;
       }
 
       var hasNewlines = translation.indexOf(newlineChar) !== -1;
@@ -2874,7 +2963,7 @@ html[dir="rtl"] body {
       var hasEntities = /&[a-zA-Z]+;|&#\d+;|&#x[0-9a-fA-F]+;/.test(translation);
       var elementHasBr = /<br\s*\/?>/i.test(el.innerHTML);
 
-      if (hasNewlines || hasInlineFormat || hasEntities || elementHasBr) {
+      if (hasNewlines || hasInlineFormat || hasEntities || elementHasBr || wrappedFormatting) {
         el.innerHTML = translation.split(newlineChar).join('<br>');
       } else {
         el.textContent = translation;
