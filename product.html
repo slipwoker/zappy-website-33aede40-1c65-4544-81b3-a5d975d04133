@@ -112,6 +112,37 @@
   var visitorId = getVisitorId();
   var sessionId = getSessionId();
   
+  // Site Optimization Agent — visual heatmap helpers
+  function getBandAnchor(el) {
+    var node = el;
+    while (node && node !== document.body) {
+      if (node.getAttribute && node.getAttribute('data-band-index') != null) {
+        return { bandIndex: node.getAttribute('data-band-index'), sectionId: node.id || null };
+      }
+      node = node.parentElement;
+    }
+    node = el;
+    while (node && node !== document.body) {
+      if (node.tagName === 'SECTION' && node.id) {
+        return { bandIndex: null, sectionId: node.id };
+      }
+      node = node.parentElement;
+    }
+    return { bandIndex: null, sectionId: null };
+  }
+  function heatmapFields(el, e) {
+    var anchor = getBandAnchor(el);
+    return {
+      x: Math.round((e && e.pageX) || 0),
+      y: Math.round((e && e.pageY) || 0),
+      bandIndex: anchor.bandIndex,
+      sectionId: anchor.sectionId
+    };
+  }
+  function mergeFields(base, extra) {
+    for (var k in extra) { if (Object.prototype.hasOwnProperty.call(extra, k)) base[k] = extra[k]; }
+    return base;
+  }
   // Track an event
   function trackEvent(eventType, data) {
     data = data || {};
@@ -161,26 +192,61 @@
       // Track button clicks (counted as actions)
       if (target.tagName === 'BUTTON' || target.closest('button')) {
         var button = target.tagName === 'BUTTON' ? target : target.closest('button');
-        trackEvent('click', {
+        var clickMeta = {
           element: 'button',
           text: button.textContent.trim().substring(0, 100),
           id: button.id || null,
           class: button.className || null
-        });
+        };
+        mergeFields(clickMeta, heatmapFields(button, e));
+        trackEvent('click', clickMeta);
       }
       
       // Track link clicks (navigation - not counted as actions)
       else if (target.tagName === 'A' || target.closest('a')) {
         var link = target.tagName === 'A' ? target : target.closest('a');
-        trackEvent('navigation', {
+        var navMeta = {
           element: 'link',
           text: link.textContent.trim().substring(0, 100),
           href: link.href,
           external: link.hostname !== window.location.hostname
-        });
+        };
+        mergeFields(navMeta, heatmapFields(link, e));
+        trackEvent('navigation', navMeta);
       }
     }, true);
   }
+  
+  // Track scroll depth milestones (visual heatmap reach signal)
+  (function() {
+    var milestones = [25, 50, 75, 100];
+    var fired = {};
+    var maxDepth = 0;
+    function computeDepth() {
+      var doc = document.documentElement;
+      var scrollable = (doc.scrollHeight - window.innerHeight);
+      if (scrollable <= 0) return 100;
+      return Math.min(100, Math.round(((window.scrollY || window.pageYOffset || 0) / scrollable) * 100));
+    }
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function() {
+        var depth = computeDepth();
+        if (depth > maxDepth) maxDepth = depth;
+        for (var i = 0; i < milestones.length; i++) {
+          var m = milestones[i];
+          if (depth >= m && !fired[m]) {
+            fired[m] = true;
+            trackEvent('scroll_depth', { milestone: m, maxDepthPct: maxDepth });
+          }
+        }
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
   
   // Track form submissions
   if (config.trackFormSubmissions) {
@@ -235,27 +301,27 @@
   
   
   
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="he_IL">
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="he_IL" />
   
   
   
   
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
     <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
-    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
     <!-- Cookie Consent -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css" />
     <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.umd.js"></script>
     <!-- Mickidum Accessibility Toolbar -->
     <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
@@ -1591,7 +1657,7 @@ html[dir="rtl"] body {
   
     <div class="mobile-search-panel" id="mobile-search-panel">
       <div class="search-wrapper">
-        <input type="text" id="mobile-search-input" placeholder="חיפוש מוצרים..." autocomplete="off" data-i18n-placeholder="product__slug_placeholder_37">
+        <input type="text" id="mobile-search-input" placeholder="חיפוש מוצרים..." autocomplete="off" data-i18n-placeholder="product__slug_placeholder_37" />
         <button class="search-submit" id="mobile-search-submit" title="חיפוש" data-i18n-title="product__slug_title_41">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         </button>
@@ -1620,7 +1686,7 @@ html[dir="rtl"] body {
   <div class="nav-container">
     <div class="nav-right-group"><div class="nav-brand">
       <a href="/" class="logo-link">
-        <img src="/assets/heatwave-logo.webp" alt="Heatwave" class="logo" data-i18n-alt="product__slug_alt_39">
+        <img src="/assets/heatwave-logo.webp" alt="Heatwave" class="logo" data-i18n-alt="product__slug_alt_39" />
       </a>
     </div><ul class="nav-menu" id="navMenu"><li><a href="/brand-story" data-i18n="product__slug_nav_33">סיפור המותג</a></li><li><a href="/surf-lifestyle" data-i18n="product__slug_nav_34">אורח חיים של גלישה</a></li><li class="menu-item-has-children zappy-products-dropdown">
       <a href="/products" data-i18n="product__slug_nav_30">
@@ -1633,17 +1699,17 @@ html[dir="rtl"] body {
         <li><a href="/products" data-i18n="product__slug_nav_31">כל המוצרים</a></li>
         <!-- Categories will be loaded dynamically -->
       </ul>
-    </li><li class="menu-group-item"><span class="menu-group-title">New Menu</span></li><li><a href="/contact" data-i18n="product__slug_nav_35">צור קשר</a></li></ul>
+    </li><li><a href="/contact" data-i18n="product__slug_nav_35">צור קשר</a></li></ul>
 <div class="lang-switcher" data-no-icon-edit="true" data-icon-color="currentColor" style="position:relative;display:inline-flex;align-items:center;z-index:1000;margin:0 4px;">
   <button class="lang-switcher-current" aria-haspopup="true" aria-expanded="false" data-no-icon-edit="true" style="display:flex;align-items:center;padding:8px;background:transparent;border:none;border-radius:6px;cursor:pointer;color:inherit;">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;" data-no-icon-edit="true"><path d="M12.039,.002s0,0,0,0c-.013,0-.026-.002-.039-.002-.005,0-.009,0-.014,0-.002,0-.003,0-.005,0C5.373,.011,0,5.39,0,12s5.383,12,12,12,12-5.383,12-12S18.638,.023,12.039,.002Zm9.747,6.998h-4.814c-1.067-2.669-2.712-4.781-3.731-5.925,3.734,.421,6.901,2.719,8.546,5.925Zm-4.786,5c0,1.407-.292,2.753-.731,4H7.731c-.439-1.247-.731-2.593-.731-4s.292-2.754,.73-4h8.539c.439,1.247,.731,2.593,.731,4Zm-1.122,5c-1.229,2.838-3.116,4.99-3.878,5.788-.762-.798-2.649-2.95-3.878-5.788h7.755ZM8.121,7c1.229-2.841,3.117-4.992,3.879-5.789,.762,.798,2.649,2.95,3.878,5.789h-7.757ZM10.757,1.075c-1.025,1.15-2.668,3.264-3.73,5.925H2.214C3.859,3.795,7.024,1.498,10.757,1.075ZM1.764,8H6.668c-.403,1.247-.668,2.589-.668,4s.265,2.752,.669,4H1.764c-.487-1.242-.764-2.588-.764-4s.277-2.758,.764-4Zm.45,9H7.029c1.067,2.669,2.712,4.781,3.731,5.925-3.734-.421-6.901-2.719-8.546-5.925Zm11.026,5.925c1.019-1.144,2.664-3.257,3.731-5.925h4.814c-1.645,3.206-4.812,5.504-8.546,5.925Zm8.996-6.925h-4.905c.404-1.248,.669-2.589,.669-4s-.265-2.752-.669-4h4.905c.487,1.242,.764,2.588,.764,4s-.277,2.758-.764,4Z"/></svg>
   </button>
   <div class="lang-switcher-dropdown" role="menu" style="position:absolute;top:100%;right:0;margin-top:4px;min-width:140px;background:white;border:1px solid rgba(128,128,128,0.2);border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;visibility:hidden;transform:translateY(-8px);transition:all 0.2s ease;z-index:1001;">
-    <button class="lang-option" data-lang="en" style="display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;background:none;border:none;text-align:left;cursor:pointer;font-size:14px;color:#333;"><img src="https://api.iconify.design/circle-flags/us.svg" width="20" height="20" alt style="display:inline-block;vertical-align:middle;border-radius:50%;"> English</button>
+    <button class="lang-option" data-lang="en" style="display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;background:none;border:none;text-align:left;cursor:pointer;font-size:14px;color:#333;"><img src="https://api.iconify.design/circle-flags/us.svg" width="20" height="20" alt style="display:inline-block;vertical-align:middle;border-radius:50%;" /> English</button>
   </div>
 </div>
 <script data-no-icon-edit="true">(function(){function f(){var b=document.querySelector('.lang-switcher-current');if(!b)return;var n=b.closest('nav')||b.closest('header')||b.closest('.navbar');if(!n)return;var a=n.querySelector('.nav-menu a,.nav-links a');if(!a)a=n.querySelector('a:not(.lang-option):not(.lang-switcher-current):not([class*="logo"])');if(a){var c=getComputedStyle(a).color;if(c&&c!=='rgb(0, 0, 0)'&&c!=='rgba(0, 0, 0, 0)'){b.style.color=c;return;}}var s=getComputedStyle(n).backgroundColor;if(s&&s!=='rgba(0, 0, 0, 0)'&&s!=='transparent'){var m=s.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);if(m){var l=(0.299*parseInt(m[1])+0.587*parseInt(m[2])+0.114*parseInt(m[3]))/255;b.style.color=l>0.5?'#1a1a1a':'#F3FAFF';}}}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',f);}else{setTimeout(f,0);}})()</script><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות" data-i18n-title="product__slug_title_42"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות" data-i18n-title="product__slug_title_43"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count">0</span></a><div class="nav-search-box">
-    <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש מוצרים..." autocomplete="off" data-i18n-placeholder="product__slug_placeholder_38">
+    <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש מוצרים..." autocomplete="off" data-i18n-placeholder="product__slug_placeholder_38" />
     <button class="nav-search-btn" id="nav-search-btn" title="חיפוש" data-i18n-title="product__slug_title_44">
       <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
     </button>
@@ -1684,7 +1750,7 @@ html[dir="rtl"] body {
       <!-- Column 1: Company Info -->
       <div class="footer-col footer-brand">
         <a href="/" class="footer-logo-link">
-          <img src="/assets/heatwave-logo.webp" alt="Heatwave" class="logo" data-i18n-alt="product__slug_alt_40">
+          <img src="/assets/heatwave-logo.webp" alt="Heatwave" class="logo" data-i18n-alt="product__slug_alt_40" />
         </a>
         <p class="footer-tagline" data-i18n="product__slug_p_6">חיים על הגל — אופנת ים וספורט ימי לאוהבי האוקיינוס.</p>
         <div class="footer-social">
@@ -1873,6 +1939,10 @@ html[dir="rtl"] body {
 
 
 
+
+
+
+
 <!-- i18next Multi-Language Support -->
 <script>
 (function() {
@@ -1882,6 +1952,7 @@ html[dir="rtl"] body {
   const resources = {
   "he": {
     "translation": {
+      "ecom_loading": "טוען…",
       "ecom_accountWelcome": "ברוך הבא",
       "ecom_addAddress": "הוסף כתובת",
       "ecom_addBundleToCart": "הוספת {count} מוצרים לעגלה",
@@ -1899,7 +1970,18 @@ html[dir="rtl"] body {
       "ecom_apartmentExt": "דירה, קומה, קוד בניין, הערות וכו'",
       "ecom_applyCoupon": "החל",
       "ecom_backToProducts": "חזרה למוצרים",
+      "ecom_bookNow": "הזמינו עכשיו",
+      "ecom_bookingChooseTime": "בחרו שעה",
+      "ecom_bookingDate": "תאריך",
+      "ecom_bookingLoading": "טוען זמינות…",
+      "ecom_bookingNoSlots": "אין זמנים פנויים כרגע",
+      "ecom_bookingRemaining": "נותרו {count}",
+      "ecom_bookingSelectOption": "בחירה",
+      "ecom_bookingSelectTime": "בחרו שעה",
+      "ecom_bookingSelectTimeFirst": "אנא בחרו תאריך ושעה תחילה",
+      "ecom_bookingTime": "שעה",
       "ecom_browseFavorites": "גלו את כל המוצרים שלנו",
+      "ecom_bundleDiscount": "הנחת חבילה",
       "ecom_bundleTotal": "סה\"כ לעגלה",
       "ecom_callNow": "התקשר עכשיו",
       "ecom_cancel": "ביטול",
@@ -1928,6 +2010,7 @@ html[dir="rtl"] body {
       "ecom_coursesDetailEnroll": "הוסף לעגלה",
       "ecom_coursesDetailResume": "המשך ללמוד",
       "ecom_coursesDigitalDelivery": "גישה דיגיטלית מקוונת",
+      "ecom_coursesLessonCompleted": "הושלם",
       "ecom_coursesLessonLoading": "טוען שיעור…",
       "ecom_coursesLessonMarkComplete": "סימון כהושלם",
       "ecom_coursesLessonNext": "הבא",
@@ -1943,6 +2026,11 @@ html[dir="rtl"] body {
       "ecom_coursesCertIssued": "הונפק",
       "ecom_coursesCertStudent": "תלמיד",
       "ecom_coursesCertValid": "מאומת",
+      "ecom_coursesCertIssuer": "הונפק על ידי",
+      "ecom_coursesCertCode": "קוד אימות",
+      "ecom_coursesViewCertificate": "צפייה בתעודה",
+      "ecom_coursesCertEarnedTitle": "הקורס הושלם!",
+      "ecom_coursesCertEarnedBody": "התעודה שלך מוכנה.",
       "ecom_coursesCurriculumEmpty": "תכנית הלימודים תגיע בקרוב.",
       "ecom_coursesFree": "חינם",
       "ecom_coursesJoinLive": "הצטרף בשידור חי",
@@ -2032,6 +2120,10 @@ html[dir="rtl"] body {
       "ecom_noFeaturedProducts": "עוד לא נבחרו מוצרים מומלצים. צפו בכל המוצרים שלנו!",
       "ecom_noOrders": "אין עדיין הזמנות",
       "ecom_noProducts": "אין מוצרים להצגה כרגע",
+      "ecom_previewEmptyStoreTitle": "החנות שלך מוכנה למוצרים",
+      "ecom_previewEmptyStoreBody": "הוסף את המוצר הראשון במנהל החנות כדי לראות אותו מופיע כאן.",
+      "ecom_previewEmptyStoreButton": "הוסף מוצרים",
+      "ecom_previewOnlyBadge": "תצוגה מקדימה בלבד",
       "ecom_noShippingMethods": "אין אפשרויות משלוח זמינות",
       "ecom_notLoggedIn": "לא מחובר",
       "ecom_orderConfirmation": "אישור הזמנה נשלח לאימייל שלך",
@@ -2128,6 +2220,12 @@ html[dir="rtl"] body {
       "ecom_coursesAlreadyOwned": "כבר יש לך גישה לקורס זה.",
       "ecom_coursesAlreadyOwnedCheckout": "כבר נרשמת לקורס שבעגלת הקניות.",
       "ecom_coursesEnrollmentCheckFailed": "לא ניתן לאמת בעלות על הקורס. אנא נסה שוב.",
+      "ecom_coursesAlreadyEnrolledPrompt": "כבר נרשמת?",
+      "ecom_coursesLoginLink": "לכניסה",
+      "ecom_yourCourse": "הקורס שלך",
+      "ecom_courseAccessMethod": "גישה דיגיטלית מקוונת",
+      "ecom_processing": "מעבד...",
+      "ecom_checkoutFailed": "שגיאה בתהליך התשלום. נסו שוב.",
       "cart_p_6": "חיים על הגל — אופנת ים וספורט ימי לאוהבי האוקיינוס.",
       "cart_p_7": "ספורט ימי · אופנת ים · אורח חיים חופי",
       "cart_p_8": "פרמיום · בר-קיימא · עיצוב ים תיכוני",
@@ -2137,7 +2235,7 @@ html[dir="rtl"] body {
       "cart_h3_3": "ניווט מהיר",
       "cart_h3_4": "יצירת קשר",
       "cart_h3_5": "Heatwave",
-      "home_h1_1": "Heatwave —\nהגלים קוראים לך",
+      "home_h1_1": "&nbsp;הגלים קוראים לך",
       "home_h2_2": "מוצרים מומלצים",
       "home_h2_3": "קנו לפי קטגוריה",
       "home_h2_4": "שלום לקהילת זאפי, יום מבורך",
@@ -2167,7 +2265,9 @@ html[dir="rtl"] body {
       "login_p_7": "הזן את הקוד שנשלח לאימייל שלך",
       "login_p_8": "חיים על הגל — אופנת ים וספורט ימי לאוהבי האוקיינוס.",
       "login_p_9": "ספורט ימי · אופנת ים · אורח חיים חופי",
-      "new_p_107": "<span class=\"index-hero-label\" style=\"color: rgb(242, 233, 220) !important;\">ספורט ימי ובגדי ים</span>",
+      "new_p_107": "ספורט ימי ובגדי ים",
+      "new_p_113": "קבלו גישה מוקדמת לקולקציות חדשות, הנחות חברים בלעדיות ועדכונים על מבצעים חמים לפני כולם.",
+      "new_p_117": "* ההצטרפות חינם, ניתן לבטל בכל עת",
       "home_h3_10": "בגדי ים שמחמיאים לכל גזרה",
       "home_h3_11": "אורח חיים חופי — לא רק אופנה",
       "home_h3_12": "דניאל כהן",
@@ -2183,6 +2283,7 @@ html[dir="rtl"] body {
       "login_h3_5": "Heatwave",
       "login_p_10": "פרמיום · בר-קיימא · עיצוב ים תיכוני",
       "login_p_11": "© 2026 Heatwave. כל הזכויות שמורות.",
+      "new_h2_112": "הצטרפו למועדון הלקוחות",
       "terms_h1_1": "תנאי שימוש",
       "terms_h2_2": "1. הגדרות",
       "terms_h2_3": "2. תיאור השירותים",
@@ -2235,6 +2336,7 @@ html[dir="rtl"] body {
       "home_nav_68": "אורח חיים של גלישה",
       "home_nav_69": "צור קשר",
       "home_nav_70": "כל המוצרים",
+      "new_div_109": "<span class=\"badge-icon\">★</span>\n          <span class=\"badge-text\">VIP</span>",
       "terms_h2_10": "9. שינוי תנאי השימוש",
       "terms_h2_11": "10. סיום השירות",
       "terms_h2_12": "11. דין חל ויישוב סכסוכים",
@@ -2363,6 +2465,8 @@ html[dir="rtl"] body {
       "login_nav_39": "צור קשר",
       "login_nav_40": "כל המוצרים",
       "new_span_108": "תפריט חדש",
+      "new_span_111": "הטבות בלעדיות",
+      "new_span_116": "הצטרפו עכשיו",
       "privacy_h1_1": "מדיניות פרטיות",
       "privacy_h2_2": "1. איסוף מידע",
       "privacy_h2_3": "2. שימוש במידע",
@@ -2437,6 +2541,8 @@ html[dir="rtl"] body {
       "login_link_29": "המשך לתשלום",
       "login_span_12": "[business_email]",
       "login_span_13": "[business_phone]",
+      "new_label_114": "מייל",
+      "new_label_115": "אני מאשר/ת קבלת דיוור ועדכונים מ-Heatwave",
       "privacy_h3_10": "ניווט מהיר",
       "privacy_h3_11": "יצירת קשר",
       "privacy_h3_12": "Heatwave",
@@ -3516,6 +3622,7 @@ html[dir="rtl"] body {
   },
   "en": {
     "translation": {
+      "ecom_loading": "Loading…",
       "ecom_accountWelcome": "Welcome",
       "ecom_addAddress": "Add Address",
       "ecom_addBundleToCart": "Add {count} items to cart",
@@ -3533,7 +3640,18 @@ html[dir="rtl"] body {
       "ecom_apartmentExt": "Apt, Floor, Building Code, Notes, Etc.",
       "ecom_applyCoupon": "Apply",
       "ecom_backToProducts": "Back to Products",
+      "ecom_bookNow": "Book now",
+      "ecom_bookingChooseTime": "Choose a time",
+      "ecom_bookingDate": "Date",
+      "ecom_bookingLoading": "Loading availability…",
+      "ecom_bookingNoSlots": "No available times right now",
+      "ecom_bookingRemaining": "{count} left",
+      "ecom_bookingSelectOption": "Select",
+      "ecom_bookingSelectTime": "Select a time",
+      "ecom_bookingSelectTimeFirst": "Please choose a date and time first",
+      "ecom_bookingTime": "Time",
       "ecom_browseFavorites": "Discover all our products",
+      "ecom_bundleDiscount": "Bundle Discount",
       "ecom_bundleTotal": "Bundle total",
       "ecom_callNow": "Call Now",
       "ecom_cancel": "Cancel",
@@ -3562,6 +3680,7 @@ html[dir="rtl"] body {
       "ecom_coursesDetailEnroll": "Add to Cart",
       "ecom_coursesDetailResume": "Resume learning",
       "ecom_coursesDigitalDelivery": "Digital online access",
+      "ecom_coursesLessonCompleted": "Completed",
       "ecom_coursesLessonLoading": "Loading lesson…",
       "ecom_coursesLessonMarkComplete": "Mark complete",
       "ecom_coursesLessonNext": "Next",
@@ -3577,6 +3696,11 @@ html[dir="rtl"] body {
       "ecom_coursesCertIssued": "Issued",
       "ecom_coursesCertStudent": "Student",
       "ecom_coursesCertValid": "Verified",
+      "ecom_coursesCertIssuer": "Issued by",
+      "ecom_coursesCertCode": "Verification code",
+      "ecom_coursesViewCertificate": "View certificate",
+      "ecom_coursesCertEarnedTitle": "Course complete!",
+      "ecom_coursesCertEarnedBody": "Your certificate is ready.",
       "ecom_coursesCurriculumEmpty": "Curriculum coming soon.",
       "ecom_coursesFree": "Free",
       "ecom_coursesJoinLive": "Join live",
@@ -3666,6 +3790,10 @@ html[dir="rtl"] body {
       "ecom_noFeaturedProducts": "No featured products yet. Check out all our products!",
       "ecom_noOrders": "No orders yet",
       "ecom_noProducts": "No products to display",
+      "ecom_previewEmptyStoreTitle": "Your store is ready for products",
+      "ecom_previewEmptyStoreBody": "Add your first product in Store Manager to see it appear here.",
+      "ecom_previewEmptyStoreButton": "Add products",
+      "ecom_previewOnlyBadge": "Preview only",
       "ecom_noShippingMethods": "No shipping options available",
       "ecom_notLoggedIn": "Not Logged In",
       "ecom_orderConfirmation": "A confirmation email has been sent to you",
@@ -3762,6 +3890,12 @@ html[dir="rtl"] body {
       "ecom_coursesAlreadyOwned": "You already own this course.",
       "ecom_coursesAlreadyOwnedCheckout": "You are already enrolled in a course in your cart.",
       "ecom_coursesEnrollmentCheckFailed": "Could not verify course ownership. Please try again.",
+      "ecom_coursesAlreadyEnrolledPrompt": "Already enrolled?",
+      "ecom_coursesLoginLink": "Log in",
+      "ecom_yourCourse": "your course",
+      "ecom_courseAccessMethod": "Online course access",
+      "ecom_processing": "Processing...",
+      "ecom_checkoutFailed": "Checkout failed. Please try again.",
       "cart_p_6": "Living on the wave — swimwear and water sports for ocean lovers.",
       "cart_p_7": "Water Sports · Swimwear · Coastal Lifestyle",
       "cart_p_8": "Premium · Sustainable · Mediterranean Design",
@@ -3771,7 +3905,7 @@ html[dir="rtl"] body {
       "cart_h3_3": "Quick Navigation",
       "cart_h3_4": "Contact",
       "cart_h3_5": "Heatwave",
-      "home_h1_1": "Heatwave —\nThe waves are calling you",
+      "home_h1_1": "&nbsp;The waves are calling you",
       "home_h2_2": "Recommended Products",
       "home_h2_3": "Shop by Category",
       "home_h2_4": "The sea is the best place for swimming",
@@ -3801,7 +3935,9 @@ html[dir="rtl"] body {
       "login_p_7": "Enter the code sent to your email",
       "login_p_8": "Living on the wave — swimwear and water sports for ocean lovers.",
       "login_p_9": "Water Sports · Swimwear · Coastal Lifestyle",
-      "new_p_107": "<span class=\"index-hero-label\" style=\"color: rgb(242, 233, 220) !important;\">Water Sports &amp; Swimwear</span>",
+      "new_p_107": "Water Sports & Swimwear",
+      "new_p_113": "קבלו גישה מוקדמת לקולקציות חדשות, הנחות חברים בלעדיות ועדכונים על מבצעים חמים לפני כולם.",
+      "new_p_117": "* ההצטרפות חינם, ניתן לבטל בכל עת",
       "home_h3_10": "Swimwear that flatters every figure",
       "home_h3_11": "Coastal lifestyle — not just fashion",
       "home_h3_12": "Daniel Cohen",
@@ -3817,6 +3953,7 @@ html[dir="rtl"] body {
       "login_h3_5": "Heatwave",
       "login_p_10": "Premium · Sustainable · Mediterranean Design",
       "login_p_11": "© 2026 Heatwave. All rights reserved.",
+      "new_h2_112": "הצטרפו למועדון הלקוחות",
       "terms_h1_1": "Terms of Use",
       "terms_h2_2": "1. Definitions",
       "terms_h2_3": "2. Service Description",
@@ -3869,6 +4006,7 @@ html[dir="rtl"] body {
       "home_nav_68": "Surf Lifestyle",
       "home_nav_69": "Contact",
       "home_nav_70": "All Products",
+      "new_div_109": "<span class=\"badge-icon\">★</span>\n          <span class=\"badge-text\">VIP</span>",
       "terms_h2_10": "9. Modification of Terms of Use",
       "terms_h2_11": "10. Service Termination",
       "terms_h2_12": "11. Governing Law and Dispute Resolution",
@@ -3997,6 +4135,8 @@ html[dir="rtl"] body {
       "login_nav_39": "Contact Us",
       "login_nav_40": "All Products",
       "new_span_108": "New Menu",
+      "new_span_111": "הטבות בלעדיות",
+      "new_span_116": "הצטרפו עכשיו",
       "privacy_h1_1": "Privacy Policy",
       "privacy_h2_2": "1. Information Collection",
       "privacy_h2_3": "2. Use of Information",
@@ -4071,6 +4211,8 @@ html[dir="rtl"] body {
       "login_link_29": "Proceed to Payment",
       "login_span_12": "[business_email]",
       "login_span_13": "[business_phone]",
+      "new_label_114": "מייל",
+      "new_label_115": "אני מאשר/ת קבלת דיוור ועדכונים מ-Heatwave",
       "privacy_h3_10": "Quick Navigation",
       "privacy_h3_11": "Contact",
       "privacy_h3_12": "Heatwave",
@@ -4241,8 +4383,8 @@ html[dir="rtl"] body {
       "contact_span_37": "DM is totally fine too 🌊",
       "contact_span_46": "[business_email]",
       "contact_span_47": "[business_phone]",
-      "home_caption_58": "גלשנים &amp; ציוד גלישה",
-      "home_caption_59": "בגדי ים &amp; אופנת חוף",
+      "home_caption_58": "גלשנים & ציוד גלישה",
+      "home_caption_59": "בגדי ים & אופנת חוף",
       "home_caption_60": "Beach Moments",
       "home_caption_61": "Everyday Sea Life",
       "home_page_title": "Swimwear — Heatwave",
@@ -5227,6 +5369,29 @@ html[dir="rtl"] body {
       return;
     }
 
+    // COURSES DYNAMIC PAGES: paths like /courses/:slug, /lesson/:id,
+    // /my-learning, /certificate/:code are served by a single static
+    // template with Render rewrite rules. There are no physical
+    // /en/courses/:slug files — prepending /<lang>/ would 404. Instead,
+    // toggle ?lang= and let the i18n runtime translate in-place (same
+    // approach as preview mode).
+    var strippedPath = path;
+    var langPrefix = path.match(/^\/([a-z]{2})(?=\/|$)/i);
+    if (langPrefix && availableLanguages.includes(langPrefix[1].toLowerCase())) {
+      strippedPath = path.slice(langPrefix[0].length) || '/';
+    }
+    if (/^\/(courses(\/|$)|lesson\/|my-learning(\/|$)|certificate\/)/.test(strippedPath)) {
+      var dynUrl = new URL(window.location.href);
+      dynUrl.pathname = strippedPath;
+      if (targetLang === 'he') {
+        dynUrl.searchParams.delete('lang');
+      } else {
+        dynUrl.searchParams.set('lang', targetLang);
+      }
+      window.location.assign(dynUrl.pathname + dynUrl.search + dynUrl.hash);
+      return;
+    }
+
     var prefixMatch = path.match(/^\/([a-z]{2})(?=\/|$)/i);
     if (prefixMatch && availableLanguages.includes(prefixMatch[1].toLowerCase())) {
       path = path.slice(prefixMatch[0].length) || '/';
@@ -5391,16 +5556,32 @@ html[dir="rtl"] body {
         }
       }
 
-      // Carry over inline formatting from the source element when the translation
-      // is plain text. E.g., source: <font color="#fff">Hebrew</font>,
-      // translation: "English" → wrap as <font color="#fff">English</font>.
+      // Carry over a single inline colour/format wrapper from the source element
+      // when the translation is plain text. The inline-editor colour picker wraps
+      // the selected text in <span style="color:#hex !important"> (legacy edits
+      // used <font color>). Without re-applying that wrapper, the
+      // textContent/innerHTML swap below destroys it and the user's picked text
+      // colour silently reverts to the CSS default on every load / language
+      // switch (the edit IS saved in the HTML — it's just re-rendered away here).
+      var wrappedFormatting = false;
       var fontChild = el.querySelector('font[color], font[face], font[size]');
-      if (fontChild && !inlineFormatPattern.test(translation)) {
-        var fontTag = '<font';
-        for (var ai = 0; ai < fontChild.attributes.length; ai++) {
-          fontTag += ' ' + fontChild.attributes[ai].name + '="' + fontChild.attributes[ai].value.replace(/"/g, '&quot;') + '"';
+      var styleWrapper = fontChild;
+      if (!styleWrapper && el.children.length === 1) {
+        var onlyChild = el.children[0];
+        if (onlyChild && onlyChild.tagName === 'SPAN' &&
+            /(^|;)\s*(color|background|background-color)\s*:/i.test(onlyChild.getAttribute('style') || '') &&
+            onlyChild.textContent.trim() === (el.textContent || '').trim()) {
+          styleWrapper = onlyChild;
         }
-        translation = fontTag + '>' + translation + '</font>';
+      }
+      if (styleWrapper && !inlineFormatPattern.test(translation) && !structuralTagPattern.test(translation)) {
+        var wrapperTag = styleWrapper.tagName.toLowerCase();
+        var openTag = '<' + wrapperTag;
+        for (var ai = 0; ai < styleWrapper.attributes.length; ai++) {
+          openTag += ' ' + styleWrapper.attributes[ai].name + '="' + styleWrapper.attributes[ai].value.replace(/"/g, '&quot;') + '"';
+        }
+        translation = openTag + '>' + translation + '</' + wrapperTag + '>';
+        wrappedFormatting = true;
       }
 
       var hasNewlines = translation.indexOf(newlineChar) !== -1;
@@ -5408,7 +5589,7 @@ html[dir="rtl"] body {
       var hasEntities = /&[a-zA-Z]+;|&#\d+;|&#x[0-9a-fA-F]+;/.test(translation);
       var elementHasBr = /<br\s*\/?>/i.test(el.innerHTML);
 
-      if (hasNewlines || hasInlineFormat || hasEntities || elementHasBr) {
+      if (hasNewlines || hasInlineFormat || hasEntities || elementHasBr || wrappedFormatting) {
         el.innerHTML = translation.split(newlineChar).join('<br>');
       } else {
         el.textContent = translation;
@@ -6297,6 +6478,61 @@ html[dir="rtl"] body {
           observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style'] });
         });
       }, 500);
+    })();
+    </script>
+
+    <script id="zappy-navbar-scroll-effect">
+    (function(){
+      var nb=document.querySelector('nav.navbar,.navbar:not(.zappy-catalog-menu)');
+      var cm=document.querySelector('.zappy-catalog-menu,#zappy-catalog-menu');
+      if(!nb)return;
+      var fb='rgba(242,233,220,0.85)';
+      var th=60;
+      var rs=getComputedStyle(document.documentElement);
+      var td=rs.getPropertyValue('--text-dark').trim()||'#1a1a1a';
+      var tl=rs.getPropertyValue('--text-light').trim()||'#ffffff';
+      var st=true?td:tl;
+      nb.style.transition='background 0.3s ease,backdrop-filter 0.3s ease,-webkit-backdrop-filter 0.3s ease,box-shadow 0.3s ease';
+      if(cm)cm.style.transition='background 0.3s ease,backdrop-filter 0.3s ease,-webkit-backdrop-filter 0.3s ease';
+      var neSel='a,.navbar-brand,.navbar-brand a,.dropdown-toggle,.mobile-toggle,.phone-header-btn,.mobile-hamburger-btn,.mobile-close-btn,.mobile-submenu-toggle,.nav-link';
+      var skipCls=['cart-link','login-link','nav-search-toggle','search-toggle'];
+      function sTC(c,clr){var els=c.querySelectorAll(neSel);for(var i=0;i<els.length;i++){var sk=false;if(els[i].closest('.sub-menu')||els[i].closest('.dropdown-menu')){sk=true;}for(var j=0;j<skipCls.length;j++){if(els[i].classList.contains(skipCls[j])){sk=true;break;}}if(!sk)els[i].style.setProperty('color',clr,'important');}}
+      function cTC(c){var els=c.querySelectorAll(neSel);for(var i=0;i<els.length;i++){if(els[i].closest('.sub-menu')||els[i].closest('.dropdown-menu'))continue;els[i].style.removeProperty('color');}}
+      function applyScrolled(){
+        nb.classList.add('scrolled');
+        if(window.innerWidth>768){
+          nb.style.setProperty('--frosted-text',st);
+          nb.style.setProperty('background-image','none','important');
+          nb.style.setProperty('background-color',fb,'important');
+          nb.style.backdropFilter='blur(12px)';nb.style.webkitBackdropFilter='blur(12px)';nb.style.boxShadow='0 2px 16px rgba(0,0,0,0.12)';
+          sTC(nb,st);
+        }
+        if(cm){cm.classList.add('scrolled');if(window.innerWidth>768){cm.style.setProperty('background',fb,'important');cm.style.setProperty('backdrop-filter','blur(12px)','important');cm.style.setProperty('-webkit-backdrop-filter','blur(12px)','important');sTC(cm,st);}}
+      }
+      function onS(){
+        if(window._zappyNavNoDarkHero) return;
+        if(window.innerWidth<=768){nb.classList.remove('scrolled');cTC(nb);if(cm){cm.classList.remove('scrolled');cTC(cm);}return;}
+        var y=window.scrollY||window.pageYOffset;
+        if(y>th){
+          nb.classList.add('scrolled');nb.style.setProperty('background-color',fb,'important');nb.style.setProperty('background-image','none','important');
+          nb.style.setProperty('--frosted-text',st);nb.style.backdropFilter='blur(12px)';nb.style.webkitBackdropFilter='blur(12px)';nb.style.boxShadow='0 2px 16px rgba(0,0,0,0.12)';
+          sTC(nb,st);
+          if(cm){cm.classList.add('scrolled');cm.style.setProperty('background',fb,'important');cm.style.setProperty('backdrop-filter','blur(12px)','important');cm.style.setProperty('-webkit-backdrop-filter','blur(12px)','important');sTC(cm,st);}
+        }else{
+          nb.classList.remove('scrolled');nb.style.setProperty('background-color','transparent','important');nb.style.removeProperty('background-image');
+          nb.style.removeProperty('--frosted-text');nb.style.backdropFilter='none';nb.style.webkitBackdropFilter='none';nb.style.boxShadow='none';
+          cTC(nb);
+          if(cm){cm.classList.remove('scrolled');cm.style.setProperty('background','transparent','important');cm.style.setProperty('backdrop-filter','none','important');cm.style.setProperty('-webkit-backdrop-filter','none','important');cTC(cm);}
+        }
+      }
+      function sLum(rv,gv,bv){rv/=255;gv/=255;bv/=255;rv=rv<=0.03928?rv/12.92:Math.pow((rv+0.055)/1.055,2.4);gv=gv<=0.03928?gv/12.92:Math.pow((gv+0.055)/1.055,2.4);bv=bv<=0.03928?bv/12.92:Math.pow((bv+0.055)/1.055,2.4);return 0.2126*rv+0.7152*gv+0.0722*bv;}
+      window.addEventListener('scroll',onS,{passive:true});
+      window.addEventListener('resize',onS,{passive:true});
+      onS();
+      var heroEl=document.querySelector('section[class*="hero"],[data-hero-type],main:not(.courses-page-main)>section:first-child');
+      var hasDH=false;
+      if(heroEl){var hCs=getComputedStyle(heroEl);var hBI=hCs.backgroundImage;if(hBI&&hBI!=='none'){if(hBI.indexOf('url(')!==-1){var hM2=hCs.backgroundColor.match(/\d+/g);if(hM2&&hM2.length>=3){hasDH=sLum(parseInt(hM2[0]),parseInt(hM2[1]),parseInt(hM2[2]))<0.4;}else{hasDH=true;}}else if(hBI.indexOf('gradient')!==-1){var cM=hBI.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/g);if(cM&&cM.length>0){var tLm=0;for(var ci=0;ci<cM.length;ci++){var pts=cM[ci].match(/\d+/g);tLm+=sLum(parseInt(pts[0]),parseInt(pts[1]),parseInt(pts[2]));}hasDH=(tLm/cM.length)<0.4;}else{hasDH=true;}}else{hasDH=true;}}else{var hM=hCs.backgroundColor.match(/\d+/g);if(hM&&hM.length>=3){hasDH=sLum(parseInt(hM[0]),parseInt(hM[1]),parseInt(hM[2]))<0.4;}}}
+      if(!hasDH){window.removeEventListener('scroll',onS);window.removeEventListener('resize',onS);applyScrolled();window._zappyNavNoDarkHero=true;}
     })();
     </script>
 </body>
